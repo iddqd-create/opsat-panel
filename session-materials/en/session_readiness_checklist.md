@@ -1,65 +1,65 @@
 # Session Readiness Checklist
 
-> **Bilateral Operational Checklist:**
-> Designed to minimize unforeseen risks, harmonize *Set & Setting*, and ensure the comfort of all participants on the day of deep immersion.
+> **Two-Sided Operational Checklist:**  
+> Designed to minimize somatic and logistical risks, prepare the physical environment (*Set & Setting*), and ensure participant safety on session day.
 
 ---
 
 ## PART A: PARTICIPANT (CLIENT) CHECKLIST
 
-### 3–5 Days Before the Session
-- [ ] **Pharmacological protocol agreed:** discontinued use of incompatible supplements (5-HTP, St. John's Wort, stimulants, nootropics).
-- [ ] **Toxicological detox:** alcohol and recreational substances eliminated; caffeine intake reduced.
-- [ ] **Information detox:** minimize news consumption, social media scrolling, intense films, and conflictual messaging.
-- [ ] **Intention journal:** a key question or direction for the session has been formulated and written down.
+### 3–5 Days Prior to Session (and per medical taper schedule)
+- [ ] **Pharmacological protocol cleared with a physician:** **Lithium** (absolute contraindication — high seizure risk) and **MAOIs** are strictly excluded; SSRIs/SNRIs (blunt psilocybin effects via $5\text{-HT}_{2\text{A}}$ desensitization; require supervised 2–4+ week taper/washout), triptans, tramadol, stimulants, 5-HTP, and St. John's Wort discontinued per medical schedule.
+- [ ] **Toxicological washout:** Alcohol and recreational substances avoided; caffeine intake reduced.
+- [ ] **Information hygiene:** News, conflictual messaging, and overstimulating media minimized.
+- [ ] **Intention journal:** An open, non-rigid intention for the session is formulated.
 
-### The Eve of the Session (Evening Before)
-- [ ] **Schedule cleared:** session day and the following day are completely free of work calls, business meetings, and deadlines.
-- [ ] **Domestic arrangements:** dependents/children are taken care of; no need to respond urgently to calls during the day.
-- [ ] **Sleep:** early bedtime (minimum 8 hours of restful sleep). Light, low-fat dinner before 7:00 PM.
-- [ ] **Packed items:**
-  - [ ] Comfortable, loose clothing made of natural fabrics with no constricting belts or buttons (cotton, linen).
-  - [ ] Warm soft socks and an extra T-shirt.
-  - [ ] Personal notebook and pen for journaling after the session.
-  - [ ] A meaningful personal item / talisman (optional, for grounding).
+### Evening Before Session
+- [ ] **Clear schedule:** Both session day and the following day are completely free of work, calls, and deadlines.
+- [ ] **Home logistics:** Family/childcare arranged; no obligation to respond to urgent messages during the day.
+- [ ] **Sleep:** 7–8 hours of restful sleep; light, non-fatty dinner in the evening.
+- [ ] **Prepared items:**
+  - [ ] Loose, comfortable clothing made of natural fabrics without tight belts or buttons.
+  - [ ] Warm socks and a spare t-shirt.
+  - [ ] Personal notebook and pen for post-session notes.
+  - [ ] Meaningful personal grounding object (optional).
 
 ### Morning of Session Day
-- [ ] **Nutrition:** light breakfast 3–4 hours before start (green tea, plain oatmeal, or a couple of pieces of toast). No heavy, fatty, or spicy food.
-- [ ] **Logistics:** transportation arranged in advance (taxi or trusted companion). **Do NOT drive!**
-- [ ] **Inner readiness:** prepared to follow the principle *"Trust, Let Go, Be Open."*
+- [ ] **Nutrition:** Light, non-fatty breakfast **3–4 hours** prior (e.g., oatmeal with water, toast) and caffeine-free herbal tea (chamomile, mint, ginger) or water. No heavy, greasy, or spicy food.
+- [ ] **Transportation:** Safe transport home arranged in advance (trusted companion or taxi). **Driving is strictly prohibited.**
+- [ ] **Mindset:** Willingness to follow *"Trust, Let Go, Be Open"*.
 
 ---
 
-## PART B: FACILITATOR / THERAPIST CHECKLIST (SETTING & SPACE)
+## PART B: FACILITATOR / THERAPIST CHECKLIST (SETTING & SAFETY)
 
-### Space and Physical Comfort
-- [ ] **Location is isolated:** no doorbell interruptions, neighbor noise, foreign odors, or unexpected visitors guaranteed.
-- [ ] **Lighting:** ability to create soft low light (blackout curtains, dimmers, warm floor lamps).
-- [ ] **Climate & ventilation:** fresh air, temperature 21–23°C (70–74°F), no drafts.
-- [ ] **Immersion zone:**
-  - [ ] Comfortable wide mattress / therapeutic couch.
-  - [ ] 2–3 pillows of different firmness.
-  - [ ] 2 blankets: one light cotton, one heavy/woolen (for grounding during chills).
-  - [ ] High-quality, soft anatomical eye mask (Mindfold / silk mask).
+### Space & Physical Comfort
+- [ ] **Location isolated:** Doorbells, noise, and unexpected visitors prevented.
+- [ ] **Lighting:** Soft, diffused dim lighting (blackout curtains, warm lamps).
+- [ ] **Climate:** Fresh air, temperature 21–23 °C (70–73 °F), no drafts.
+- [ ] **Session area:**
+  - [ ] Comfortable wide mattress or therapeutic couch.
+  - [ ] 2–3 pillows of varying firmness.
+  - [ ] 2 blankets: one light cotton and one warm/weighted blanket (for chills).
+  - [ ] Soft light-blocking eye mask (Mindfold / silk mask).
 
-### Audio System & Sound
-- [ ] **Primary sound:** closed-back, full-size, high-quality headphones with a clear soundstage and soft ear cushions.
-- [ ] **Backup sound:** external Bluetooth speaker with spatial, soft sound (in case the client tires of headphones).
-- [ ] **Playlists downloaded OFFLINE:** Ascent, Peak, and Descent playlists downloaded to device in high quality (do not rely on Wi-Fi!).
-- [ ] **All devices on Airplane Mode:** notifications, calls, and messengers 100% disabled.
+### Audio System
+- [ ] **Primary audio:** Closed-back over-ear headphones with comfortable earpads.
+- [ ] **Backup audio:** External speaker (in case the client prefers to remove headphones).
+- [ ] **Playlists downloaded OFFLINE:** Ascent, Peak, and Descent playlists stored locally; all devices fully charged.
+- [ ] **Airplane mode:** All phones and notifications turned off.
 
-### Hygiene, Somatic Care & First Aid
-- [ ] **Clean drinking water:** a pitcher or water bottles at room temperature, glasses, and straws (convenient for drinking while lying down).
+### Hygiene, Monitoring & Emergency Readiness
+- [ ] **Drinking water:** Room-temperature water, cups, and straws (for easy drinking while lying down).
 - [ ] **Somatic comfort:**
-  - [ ] Waterproof absorbent pad under the main bedding (in case of somatic reactions).
-  - [ ] A clean bucket or thick bags for purging, wet and dry wipes.
-- [ ] **First aid kit (Harm Reduction):**
-  - [ ] Blood pressure monitor and pulse oximeter.
-  - [ ] Activated charcoal, antispasmodics, electrolytes, glucose.
-  - [ ] Quick access to emergency medical contacts.
-- [ ] **Post-session snack:** fresh berries, grapes, citrus slices, light crackers, chamomile/mint herbal tea, honey.
+  - [ ] Waterproof protective sheet under main bedding (if needed).
+  - [ ] Emesis basin or heavy-duty bags, wet and dry tissues.
+- [ ] **Monitoring & First Aid (Harm Reduction):**
+  - [ ] Blood pressure monitor and pulse oximeter (verify resting BP < 140/90 mmHg before dosing and monitor HR).
+  - [ ] Electrolytes, water, and light carbohydrates (glucose/fruit for post-session).
+  - [ ] Emergency medical escalation plan: on-call physician/supervisor and emergency services (112 / 911) contacts readily accessible.
+- [ ] **Post-session snack:** Fresh berries, grapes, citrus slices, light crackers, herbal tea.
 
-### Documents & Protocol
-- [ ] Screening questionnaire reviewed; no exclusion criteria present.
-- [ ] Informed consent and Touch Consent signed by both parties.
-- [ ] Client's emergency contact number saved in therapist's speed dial.
+### Documentation & Protocol
+- [ ] Medical and psychiatric screening verified; exclusions (Bipolar I/II, personal or first-degree family history of psychosis, lithium, MAOIs, uncontrolled hypertension) ruled out.
+- [ ] Informed consent and Touch Consent (or *zero-touch* preference) signed by both parties and verbally reconfirmed.
+- [ ] Trusted companion's phone number saved on speed dial.

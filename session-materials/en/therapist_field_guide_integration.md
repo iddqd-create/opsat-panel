@@ -1,76 +1,75 @@
 # Therapist Field Guide: Post-Session Integration (Integration Phase)
 
-> **OSPAT / MAPS Protocol Standard:**
-> Integration is the phase for which the session itself is conducted.
-> Without integration, the peak experience remains an isolated episode or "spiritual tourism."
-> Recommended schedule:
-> 1. First mini-session: 24–48 hours after immersion (60 min).
-> 2. Second session: 7–10 days later (60–90 min).
-> 3. Third session: 3–4 weeks later (closing the neuroplasticity window).
+> **OSPAT Protocol Standard:**  
+> Integration is the essential phase that translates peak insights into lasting behavioral and emotional change.  
+> Recommended schedule:  
+> 1. Initial check-in: 24–48 hours post-session (60 min).  
+> 2. Second session: 7–10 days post-session (60–90 min).  
+> 3. Third session: 3–4 weeks post-session (progress review and habit consolidation).
 
 ---
 
-## 1. The Neuroplasticity Window Concept (Pivotal Mental States)
+## 1. The Neuroplasticity Window (Pivotal Mental States)
 
-Research by Carhart-Harris (2021) and de Vos et al. (2021) demonstrates:
-During the 14–28 days following a session, the brain enters a state of hyper-plasticity:
-- Activity in Default Mode Network (DMN) nodes is reduced.
-- The rigidity of fixed cognitive patterns (*priors*) is decreased.
-- Receptivity to new behavioral patterns and environmental context is heightened.
+Modern neuroscience clarifies the biological basis for post-session therapy:
+- **Relaxation of rigid priors & DMN modulation (Carhart-Harris & Friston, 2019; Carhart-Harris et al., 2021):** Reduced rigidity of entrenched cognitive beliefs (*priors*) and Default Mode Network (DMN) rumination.
+- **Direct TrkB binding & BDNF signaling (Moliner et al., 2023, *Nature Neuroscience*):** Psilocin and LSD bind directly to **TrkB** (the BDNF receptor), acting as positive allosteric modulators of endogenous BDNF and promoting synaptic plasticity.
+- **Reopened critical period (Nardou et al., 2023, *Nature*):** Classic psychedelics reopen a critical period for social reward learning proportional to drug pharmacology — **approximately 2 weeks (~14 days) for psilocybin and MDMA** (~3 weeks for LSD, ~48 hours for ketamine).
 
-**The therapist's task:** harness this biological flexibility to anchor new neural pathways through body and action.
+**Therapist's task:** Use these 2–4 weeks of heightened receptivity to establish sustainable somatic, emotional, and behavioral anchors.
 
 ---
 
-## 2. The Golden "14-Day Rule"
+## 2. The Moratorium Rule: 14–30 Days
 
-At the first integration meeting the therapist introduces the rule:
-> **"No radical decisions in the first two weeks!"**
-> Prohibited: filing for divorce, quitting your job, selling your apartment, retreating to a monastery, or publicly confessing in social media.
-> *Rationale:* The state of emotional openness (*afterglow*) can create an illusion of omnipotence or false clarity. Every insight needs time to cool and crystallize.
+Establish a protective boundary at the first integration meeting:
+> **"No radical, irreversible life decisions for the first 14–30 days!"**  
+> Avoid immediately filing for divorce, quitting a job, selling property, or making abrupt life-altering commitments.  
+> *Rationale:* Post-session emotional openness (*afterglow*) can create an illusion of instant certainty. Major decisions require at least 2–4 weeks to be tested against everyday reality.
 
 ---
 
 ## 3. The 4-Level Integration Model
 
-The integration conversation proceeds strictly from bottom to top:
+Structure integration sessions from the bottom up:
 
 ```
-  [4. Behavior]   -->  Concrete habits, micro-actions, boundaries
-  [3. Meaning]    -->  Translating metaphors and visions into life lessons
-  [2. Emotion]    -->  Legitimizing feelings: grief, elation, shame, anger
-  [1. Body]       -->  Where in the body does this experience live? Sleep, breath, muscle tone
+  [4. Behavior]   -->  Concrete micro-actions, habits, boundaries
+  [3. Meaning]    -->  Translating imagery and metaphors into life direction
+  [2. Emotion]    -->  Validating feelings: grief, relief, shame, anger
+  [1. Body]       -->  Sleep, nutrition, bodily resonance, somatic anchors
 ```
 
-### Level 1. Somatic (Somatic Grounding)
-- "How did you sleep these past two nights? What are you dreaming about?"
-- "When you recall the strongest moment of the session — where in your body does that image resonate right now?"
-- Tools: barefoot walks in nature, contrast showers, magnesium baths, somatic shaking, massage.
+### Level 1. Somatic Grounding
+- "How have you slept over the past two nights? How are your body and energy levels?"
+- "When you recall the strongest moment of the session, where do you feel it in your body right now?"
+- Anchors: restorative sleep, screen-free walks, warm baths, gentle movement, limiting stimulants.
 
 ### Level 2. Emotional & Phenomenological
-- Do not analyze "why it happened" immediately. First make space for feelings: "What was most touching? What brought up grief?"
-- **Normalizing the post-session dip (The Vulnerability Dip):**
-  On days 3–5 after the euphoric *afterglow*, a mood drop is common. The client may feel empty or an intensification of old sorrow.
-  *Therapist intervention:* "This is normal receptor regulation and coming down from a peak stress load. The psyche is integrating material. Don't be frightened by this pause; allow yourself to slow down."
+- Do not rush into analysis; make room for feelings first: "What feels most tender, and what feels hardest right now?"
+- **Normalizing the Post-Session Vulnerability Dip:**  
+  Around days 2–5 after an initial lift, some clients experience sadness, vulnerability, or fatigue.  
+  *Important clarification:* Unlike MDMA, classic psychedelics (psilocybin) **do not deplete serotonin stores**. This dip reflects transient $5\text{-HT}_{2\text{A}}$ receptor desensitization, recovery from intense emotional exertion, sleep debt, and the contrast of returning to unchanged daily stressors.  
+  *Facilitator response:* "Your nervous system is adjusting after deep emotional work; temporary vulnerability is a normal part of settling back in."
 
-### Level 3. Cognitive & Meaning-Making (Deciphering the Symbols)
-- Working with metaphors: *"I saw an abandoned black castle overgrown with ivy."*
-- Therapist's question: *"If this castle were a part of your life — what does it hold? What in your life is equally abandoned?"*
-- Connecting to biography: how does what was seen relate to childhood, the relationship with parents, or a partner?
+### Level 3. Cognitive & Meaning-Making
+- Exploring imagery: *"I saw an abandoned house overgrown with ivy."*
+- Therapist prompt: *"If that house were a part of your life, what feels similarly neglected right now?"*
+- Connecting insights to biography and relationships without imposing pre-made interpretations.
 
 ### Level 4. Behavioral (Actionable Integration)
-- Insight without action dies.
-- **Filter question:** *"What one micro-action will you take this week to confirm to your body that you heard the lesson of the session?"*
-  (Examples: say "no" to a toxic request; go to a singing class for the first time in 5 years; dedicate 20 minutes to a walk without a phone; call your father.)
+- Insight without action gradually fades.
+- **Filter question:** *"What is one small, concrete action you will take this week to honor what you experienced?"*  
+  (Examples: setting a boundary on an unreasonable request; taking a 20-minute phone-free walk; resuming regular therapy or having a postponed conversation).
 
 ---
 
-## 4. Follow-Up Measurement with the Watts Connectedness Scale (WCS)
+## 4. Follow-Up Assessment: Watts Connectedness Scale (WCS-19)
 
-On day 7–14, repeat testing using the WCS:
-1. Compare the total score to the baseline.
-2. Analyze the delta across sub-scales:
-   - *Connection to Self:* has self-compassion increased?
-   - *Connection to Others:* has social anxiety and withdrawal decreased?
-   - *Connection to the World:* has a sense of meaning in life emerged?
-3. Discuss areas where scores did not change: these are markers for long-term psychotherapy.
+At 7–14 days (and optionally 4–12 weeks), re-administer the WCS:
+1. Compare Total WCS (0–100) against Baseline ($T_0$).
+2. Review subscale trajectories (Watts et al., 2022):
+   - *Connectedness to Self (CTS):* Has contact with emotions and body deepened?
+   - *Connectedness to Others (CTO):* Have isolation and alienation (reverse-scored items) decreased?
+   - *Connectedness to World (CTW):* Has a sense of meaning and engagement increased?
+3. Unchanged areas or subscale imbalances guide ongoing psychotherapy.

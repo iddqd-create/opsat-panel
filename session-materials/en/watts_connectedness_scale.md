@@ -1,85 +1,65 @@
-# Watts Connectedness Scale (WCS) — Rosalind Watts
+# Watts Connectedness Scale (WCS-19)
 
-> **Methodological Note:**
-> The *Watts Connectedness Scale (WCS)* was developed by clinical psychologist Dr. Rosalind Watts (Imperial College London) during research on psilocybin-assisted therapy for depression.
-> The core premise: psychological trauma and depression are states of deep *disconnection* from oneself, others, and the world. Sessions in altered states of consciousness restore this wholeness.
-> **Instructions for use:** the questionnaire is completed twice:
-> 1. During the preparatory phase (baseline measurement).
-> 2. During integration (7–14 days after the session) to measure change over time.
+> **Methodological Note:**  
+> The validated *Watts Connectedness Scale (WCS)* was developed by Dr. Rosalind Watts and colleagues (Watts et al., 2022, *Psychopharmacology*, 239, 3461–3483, Imperial College London).  
+> Unlike symptom scales for depression or anxiety, WCS measures **connectedness** to self, others, and the world.  
+> **Recommended timing:**  
+> 1. Baseline ($T_0$): during preparation (prior to session).  
+> 2. Integration ($T_1$): 7–14 days post-session (within the neuroplasticity window).  
+> 3. Follow-up ($T_2$, optional): 4–12 weeks post-session to assess durability.
 
 ---
 
 ## Participant Instructions
-Rate how well each statement reflects your inner state recently.
-Use a scale from **0 to 6**, where:
-- **0** — Completely disagree (complete absence)
-- **1** — Mostly disagree
-- **2** — Somewhat disagree
-- **3** — Neutral / Unsure
-- **4** — Somewhat agree
-- **5** — Largely agree
-- **6** — Completely agree (deeply lived experience)
+Please rate how much each statement reflects your experience **over the past two weeks** using a **0 to 100%** visual analogue scale:
+- **0%** — Not at all
+- **50%** — Moderately
+- **100%** — Entirely
+
+There are no right or wrong answers; go with your immediate sense.
 
 ---
 
-### Block I. Connection to Self
-*Assesses contact with emotions, body, self-compassion, and inner truth.*
+### Full Item List (WCS-19)
 
-| # | Statement | Score (0–6) |
-|---|-----------|:-----------:|
-| 1 | I am in clear contact with my true feelings and emotions | [  ] |
-| 2 | I am well attuned to my body's signals (tension, fatigue, breath, warmth) | [  ] |
-| 3 | I treat myself with genuine compassion and kindness, even when I make mistakes | [  ] |
-| 4 | I am living an authentic life, not following externally imposed expectations | [  ] |
-| 5 | I trust my intuition and inner voice when making decisions | [  ] |
-| 6 | I accept my dark or vulnerable sides without shame or self-blame | [  ] |
-| 7 | I carry a stable sense of self-worth and inherent value | [  ] |
-**Block I Total:** _____ / 42
-
----
-
-### Block II. Connection to Others
-*Assesses empathy, openness, capacity for vulnerability, and sense of community.*
-
-| # | Statement | Score (0–6) |
-|---|-----------|:-----------:|
-| 8 | I feel genuine warmth and empathy toward the people around me | [  ] |
-| 9 | My close relationships have space for honest vulnerability | [  ] |
-| 10 | I feel part of the human community rather than a lonely outsider | [  ] |
-| 11 | I find it easy to listen sincerely to another person without judging them | [  ] |
-| 12 | I am able to forgive past hurts and release the emotional weight | [  ] |
-| 13 | I feel seen, heard, and accepted by those who matter to me | [  ] |
-| 14 | I feel a sense of trust in the world of people generally | [  ] |
-**Block II Total:** _____ / 42
+| # | Statement | Subscale | Score (0–100%) |
+|:---:|---|---|:---:|
+| 1 | I have felt trapped in my mind *(reverse-scored)* | Others *(R)* | `[   ]` % |
+| 2 | My mind has felt connected to my heart/emotion | Self | `[   ]` % |
+| 3 | I have felt connected to my senses (touch, taste, sight, smell, hearing) | Self | `[   ]` % |
+| 4 | I have felt connected to a range of emotions | Self | `[   ]` % |
+| 5 | If I had chosen to, I could have 'sat with' painful memories | Self | `[   ]` % |
+| 6 | I have felt connected to my body | Self | `[   ]` % |
+| 7 | I have been able to fully experience emotion, whether positive or negative | Self | `[   ]` % |
+| 8 | I have felt alone *(reverse-scored)* | Others *(R)* | `[   ]` % |
+| 9 | I have felt connected to friends and/or family | Others | `[   ]` % |
+| 10 | I have felt connected to a community | Others | `[   ]` % |
+| 11 | I have felt connected to all humanity | World | `[   ]` % |
+| 12 | I have felt unwelcome amongst others *(reverse-scored)* | Others *(R)* | `[   ]` % |
+| 13 | I have felt separate from the world around me *(reverse-scored)* | Others *(R)* | `[   ]` % |
+| 14 | I have felt connected to a purpose in life | World | `[   ]` % |
+| 15 | I have felt connected to nature | World | `[   ]` % |
+| 16 | I have felt connected to a spiritual essence (in the secular or religious sense) | World | `[   ]` % |
+| 17 | I have felt connected to a source of universal love | World | `[   ]` % |
+| 18 | I have seen things from a broad perspective, 'the bigger picture' | World | `[   ]` % |
+| 19 | I have felt that everything is interconnected | World | `[   ]` % |
 
 ---
 
-### Block III. Connection to Nature and the World
-*Assesses the experience of belonging to life, aesthetic awe, and meaning in existence.*
+## Scoring (For Clinician Use)
 
-| # | Statement | Score (0–6) |
-|---|-----------|:-----------:|
-| 15 | Contact with nature (forests, sky, water, earth) fills me with energy and peace | [  ] |
-| 16 | I feel awe at the beauty and complexity of life around me | [  ] |
-| 17 | I feel an integral part of the planetary ecosystem and the Universe | [  ] |
-| 18 | My life is filled with deep meaning and direction | [  ] |
-| 19 | I feel a calm acceptance of the natural flow of life, change, and death | [  ] |
-| 20 | I notice wonder and subtlety in everyday things | [  ] |
-| 21 | I feel in harmony with the rhythms of the world around me | [  ] |
-**Block III Total:** _____ / 42
+Items **1, 8, 12, and 13** are reverse-scored: transform each as `100 - score` before averaging.
 
----
+- **Connectedness to Self (CTS):** mean of items `2, 3, 4, 5, 6, 7` = `_____` % *(0–100)*
+- **Connectedness to Others (CTO):** mean of `(100-Q1), (100-Q8), Q9, Q10, (100-Q12), (100-Q13)` = `_____` % *(0–100)*
+- **Connectedness to World (CTW):** mean of items `11, 14, 15, 16, 17, 18, 19` = `_____` % *(0–100)*
+- **Total WCS Score:** `(CTS + CTO + CTW) / 3` = `_____` % *(0–100)*
 
-## Interpreting the Results
-
-- **Total Connectedness Score:** _____ / 126
-  - **0 – 45 points:** *Marked Disconnection.* Strong isolation, cognitive avoidance, dominance of default mode network (rumination, suppression).
-  - **46 – 85 points:** *Moderate Connectedness.* Intermittent access to inner resources alongside chronic blocks and emotional defenses.
-  - **86 – 126 points:** *High Integration & Connectedness.* Stable access to somatic resources, openness to experience, developed self-compassion.
+> *Note:* Watts et al. (2022) do not establish rigid diagnostic cut-offs. Clinical interpretation relies on **longitudinal change** ($T_0 \to T_1 \to T_2$) and the balance across the three subscales.
 
 ---
 
 ## Qualitative Reflection for the Integration Session
-1. In which of the three domains (Self / Others / World) was the shift between "before" and "after" most pronounced?
-2. What bodily habits or actions over the past week helped you sustain this sense of connectedness?
-3. In which life situations does the old pattern of disconnection try to regain control? What does your vulnerable part need in those moments?
+1. In which of the three domains (Self / Others / World) was the change between pre- and post-session most noticeable?
+2. Which specific somatic or behavioral habits over the past week helped sustain this sense of connectedness?
+3. In what situations does the old pattern of disconnection return, and what support helps you stay grounded?

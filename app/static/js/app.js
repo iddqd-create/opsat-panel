@@ -389,7 +389,7 @@ async function loadClientDossier(clientId) {
                     ${wcsList.map(item => `
                         <div class="wcs-score-card">
                             <span class="wcs-score-label">${item.stage === 'baseline' ? lblBase : lblInteg}</span>
-                            <div class="wcs-score-val">${item.score_total} / 126</div>
+                            <div class="wcs-score-val">${item.score_total}%</div>
                             <small class="text-muted">Self: ${item.score_self} | Others: ${item.score_others} | World: ${item.score_world}</small>
                         </div>
                     `).join('')}

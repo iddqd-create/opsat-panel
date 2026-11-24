@@ -728,7 +728,7 @@
                     <span class="section-sub" data-i18n="tools_sub">Шкала связности Розалинд Уоттс (WCS) и Интерактивный чек-лист готовности</span>
                 </div>
                 <div class="tool-switch-btns">
-                    <button class="btn btn-secondary active" onclick="switchToolSub('wcs')"><i data-lucide="bar-chart-3"></i> <span data-i18n="btn_tool_wcs">Шкала WCS (21 вопрос)</span></button>
+                    <button class="btn btn-secondary active" onclick="switchToolSub('wcs')"><i data-lucide="bar-chart-3"></i> <span data-i18n="btn_tool_wcs">Шкала WCS-19 (19 пунктов)</span></button>
                     <button class="btn btn-secondary" onclick="switchToolSub('checklist')"><i data-lucide="clipboard-check"></i> <span data-i18n="btn_tool_cl">Чек-лист готовности</span></button>
                 </div>
             </div>
@@ -756,24 +756,24 @@
                 <div class="wcs-score-dashboard">
                     <div class="wcs-score-card">
                         <span class="wcs-score-label" data-i18n="wcs_self_lbl">Связь с собой</span>
-                        <div class="wcs-score-val"><span id="wcsScoreSelf">0</span> / 42</div>
+                        <div class="wcs-score-val"><span id="wcsScoreSelf">0</span>%</div>
                     </div>
                     <div class="wcs-score-card">
                         <span class="wcs-score-label" data-i18n="wcs_others_lbl">Связь с другими</span>
-                        <div class="wcs-score-val"><span id="wcsScoreOthers">0</span> / 42</div>
+                        <div class="wcs-score-val"><span id="wcsScoreOthers">0</span>%</div>
                     </div>
                     <div class="wcs-score-card">
                         <span class="wcs-score-label" data-i18n="wcs_world_lbl">Связь с миром</span>
-                        <div class="wcs-score-val"><span id="wcsScoreWorld">0</span> / 42</div>
+                        <div class="wcs-score-val"><span id="wcsScoreWorld">0</span>%</div>
                     </div>
                     <div class="wcs-score-card wcs-total-card">
                         <span class="wcs-score-label" data-i18n="wcs_total_lbl">Общий балл связанности</span>
-                        <div class="wcs-score-val"><span id="wcsScoreTotal">0</span> / 126</div>
+                        <div class="wcs-score-val"><span id="wcsScoreTotal">0</span>%</div>
                         <div class="wcs-badge-level" id="wcsScoreLevel" data-i18n="wcs_lvl_disconn">Отчуждение</div>
                     </div>
                 </div>
 
-                <!-- 21 Questions Form -->
+                <!-- WCS-19 Questions Form (0-100 VAS) -->
                 <div class="wcs-form-container" id="wcsQuestionsContainer">
                 </div>
             </div>

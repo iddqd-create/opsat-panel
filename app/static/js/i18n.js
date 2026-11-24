@@ -197,7 +197,7 @@ const TRANSLATIONS = {
         // Tools
         tools_title: "Клинические шкалы и интерактивные инструменты",
         tools_sub: "Шкала связности Розалинд Уоттс (WCS) и Интерактивный чек-лист готовности",
-        btn_tool_wcs: "Шкала WCS (21 вопрос)",
+        btn_tool_wcs: "Шкала WCS-19 (19 пунктов)",
         btn_tool_cl: "Чек-лист готовности",
         wcs_client_lbl: "Привязать к клиенту:",
         wcs_client_placeholder: "-- Без сохранения в профиль --",
@@ -434,7 +434,7 @@ const TRANSLATIONS = {
         // Tools
         tools_title: "Clinical Scales & Interactive Tools",
         tools_sub: "Rosalind Watts Connectedness Scale (WCS) & Session Readiness Checklist",
-        btn_tool_wcs: "WCS Scale (21 Items)",
+        btn_tool_wcs: "WCS-19 Scale (19 Items)",
         btn_tool_cl: "Readiness Checklist",
         wcs_client_lbl: "Attach to client:",
         wcs_client_placeholder: "-- Do not save to profile --",
@@ -671,7 +671,7 @@ const TRANSLATIONS = {
         // Tools
         tools_title: "Клинични скали и интерактивни инструменти",
         tools_sub: "Скала за свързаност на Розалинд Уотс (WCS) и Интерактивен чек-лист за готовност",
-        btn_tool_wcs: "Скала WCS (21 въпроса)",
+        btn_tool_wcs: "Скала WCS-19 (19 точки)",
         btn_tool_cl: "Чек-лист за готовност",
         wcs_client_lbl: "Привържи към клиент:",
         wcs_client_placeholder: "-- Без запазване в профил --",

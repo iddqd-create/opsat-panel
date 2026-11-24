@@ -1,67 +1,70 @@
-# Therapist Field Guide: Session Day & Crisis Navigation
+# Therapist Field Guide: Day-of-Session & Crisis Navigation
 
-> **OSPAT / MAPS Protocol Standard:**
-> The session day lasts 5 to 8 hours.
-> The facilitator's prime directive: **Non-Directive Spaceholding.**
-> You are not the captain of the ship — you are the anchor and lifeline. The captain is the client's inner healing system.
+> **OSPAT Protocol Standard:**  
+> Session day lasts 5 to 8 hours (including pre-dosing check-in and recovery).  
+> Core facilitator principle: **Non-Directive Spaceholding**.  
+> The therapist does not direct the narrative of the experience — they ensure physical safety, calm presence, and grounded support if the client gets stuck in distress.
 
 ---
 
-## 1. Session Phase Dynamics & Therapist Tasks
+## 1. Session Phase Dynamics & Facilitator Tasks
 
 ```
-[0:00 - 1:00] Entry (Ascent)   -->  [1:00 - 3:30] Peak   -->   [3:30 - 6:00+] Return (Descent)
- Resistance anxiety                   Ego dissolution, catharsis    Coming back, grounding
- Non-directive grounding               Minimal words, music          Warm tea, light food
+[0:00 - 1:15] Ascent          -->  [1:15 - 3:30] Peak              -->  [3:30 - 6:00+] Descent
+ Onset anxiety, somatic shifts      Deep emotional/transpersonal        Return, grounding
+ Calm somatic anchoring             Minimal words, music                Water, light food, rest
 ```
 
-### Phase I. Entry / Ascent (0:00 – 1:15)
-- **Symptoms:** rising somatic discomfort, cold extremities, elevated pulse, cognitive panic (*"Why did I do this? I want to go back!"*).
-- **Therapist's actions:**
-  - Remind: this is the natural physiological threshold of entry.
-  - Help the client lie down, put on the eye mask, start the first playlist track.
-  - Cover with a weighted or warm blanket.
-  - Co-regulate breathing: a long, slow exhale through the mouth (vagus nerve stimulation).
+### Phase I. Ascent (0:00 – 1:15)
+- **Common responses:** Rising bodily discomfort, chills, increased heart rate, onset anxiety (*"Why did I do this? Stop it!"*).
+- **Facilitator actions:**
+  - Normalize this as the natural physiological onset threshold.
+  - Help the client lie down comfortably, put on eye shades, and start the playlist.
+  - Offer a warm or weighted blanket.
+  - Guide slow, extended exhalations through the mouth to settle autonomic arousal.
 
 ### Phase II. Peak (1:15 – 3:30)
-- **Symptoms:** deep transpersonal experiences, biographical regression, somatic catharsis (crying, spasms, laughter, birth-like experiences).
-- **The Silence Rule (95% of the time):**
-  Do NOT ask analytical questions! The question *"What are you thinking about right now?"* instantly pulls the client back into the controlling prefrontal cortex and breaks the healing process.
-- **Intervention is ONLY needed when stuck in a crisis loop:**
-  - If the client tears off the mask, thrashes, breathes heavily, and repeats phrases of terror.
+- **Common responses:** Deep emotional, biographical, or transpersonal experiences, tears, laughter, somatic release.
+- **Principle of minimal intervention:**  
+  Maintain silence most of the time. Analytical questions (*"What are you thinking about? Why do you feel that?"*) pull the client back into cognitive control and interrupt the process.
+- **When to intervene:** Only during prolonged panic loops, physical safety risks (attempting to leave, removing eye shades in disorientation), or medical symptoms.
 
 ---
 
-## 2. Protocols for Acute Crisis States
+## 2. Protocols for Challenging & Crisis States
 
-### Crisis 1: Panic Loop ("I'm going insane")
-1. **Presence and tone:** move closer, sit at or below eye level. Speak in a calm, low, steady voice.
-2. **Verbal safety scaffold:**
-   > *"You are completely safe. Your body is on a soft couch. I am right here, with you. What is happening is the action of the substance/process. It will definitely end. You are not going insane. Breathe with me: inhale... and a long exhale."*
-3. **Somatic anchor:** if touch consent was obtained — offer: *"May I place my hand on your shoulder? / Take my hand."* The facilitator's hand must be still, warm, and firm (like a rock).
+### Crisis 1: Panic Loop ("I'm going crazy / This will never end")
+1. **Presence & tone:** Approach calmly, sit at or below eye level. Speak in a low, steady, reassuring voice.
+2. **Verbal safety anchor:**
+   > *"You are safe. Your body is on the mattress in the room, and I am right here with you. What is happening is the effect of the medicine; it is temporary and will pass. You are not losing your mind. Let's take a calm breath in... and a long breath out."*
+3. **Somatic anchor:** If prior touch consent is signed, offer: *"Would you like me to place a hand on your shoulder or hold your hand?"* Wait for a clear "Yes"; keep the hand warm and still.
 
-### Crisis 2: Ego Death / Fear of Dying
-1. The client experiences physical death or dissolution: *"I'm dying, my heart stopped."*
+### Crisis 2: Fear of Ego Dissolution ("I am dying")
+1. The client panics at losing familiar control or bodily boundaries.
 2. **Therapeutic response:**
-   > *"Your physical body is completely fine, your heart is beating steadily. It is not the body that is dying — an old form of your experience is dissolving. Surrender to this death. Take a breath and step into this void. See what awaits you beyond it."*
+   > *"Your physical body is completely fine, you are breathing steadily, and I am monitoring you. It is not your body dying — it is the familiar grip of control softening. You can let yourself exhale and stop holding on. I am here keeping you safe."*
 
-### Crisis 3: Stuck Somatic Pain / Nausea
-1. Do not suppress somatic release with antiemetics (unless acute medical pathology is present).
-2. Bring the bucket/wipes closer. Calmly hold the client's back or head (if requested).
-3. Nausea and vomiting in transpersonal sessions are often a psychosomatic *purga* — a cleansing of toxic emotions, buried resentments, or guilt.
-4. After the episode: rinse the mouth with clean water, wipe the face with a damp cloth, settle back into warmth.
+### Crisis 3: Nausea, Vomiting & Intense Somatic Reactions
+1. Nausea during ascent or peak is a common physiological effect of peripheral serotonin receptor activation in the gut and autonomic arousal (sometimes accompanying emotional release). Do not suppress vomiting unless medically indicated.
+2. Calmly provide an emesis basin/bag and tissues; assist into a safe side-lying or seated posture.
+3. Afterward: offer water to rinse the mouth, wipe the face with a damp cloth, and help settle back under the blanket.
+
+### Crisis 4: Medical Escalation (Red Flags)
+Immediately perform vital checks (BP monitor, pulse oximeter) and contact emergency medical services (112 / 911) or the on-call physician if any of the following occur:
+- Persistent severe hypertension (e.g., >= 180/110 mmHg), chest pain, or severe shortness of breath;
+- Seizures or hyperthermia;
+- Unmanageable psychomotor agitation posing a risk of harm to self or others that does not respond to verbal grounding (in medical settings, physician-prescribed rescue medication such as benzodiazepines is used).
 
 ---
 
-## 3. Return Phase / Descent (4:00 – 6:00+)
+## 3. Descent & Recovery (3:30 – 6:00+)
 
-- Music shifts to bright, acoustic, grounding compositions.
-- Client begins slowly opening eyes and removing the mask.
-- **Therapist errors during the return:**
-  - Beginning psychological analysis and therapeutic interpretation.
-  - Imposing your own meanings: *"You realized this was about your mother, didn't you?"*
-- **Correct behavior:**
-  - Offer fresh water at room temperature, fruits (berries, grapes, citrus to stimulate taste receptors).
-  - Allow space for silence. Write down key phrases or images the client speaks verbatim in a notebook.
-  - Provide a gradual somatic transition into reality (flex the feet, stretch).
-- **Completion criteria:** stable pulse, clear orientation in time/place, coherent speech, somatic calm. The client is handed over to a trusted contact or sent home by taxi (absolutely no driving!).
+- Music transitions smoothly to calm, warm, grounding tracks.
+- The client gradually opens their eyes and removes the eye shades at their own pace.
+- **What to avoid during recovery:**
+  - Do not launch into psychological analysis or impose interpretations (*"That was clearly about your father"*).
+- **Appropriate support:**
+  - Offer room-temperature water, light fruit (berries, grapes, citrus), or herbal tea.
+  - Allow quiet space; record the client's exact words and imagery if they choose to share.
+  - Encourage gentle physical grounding (stretching, feeling feet on the floor).
+- **Completion criteria:** Stable BP and heart rate, clear orientation to place and time, coherent speech, physical calm. Release only to the pre-arranged companion (driving is strictly prohibited).
