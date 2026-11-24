@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Чек-лист готовности к сессии сопровождения</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 12mm 15mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+            font-size: 8.8pt;
+            line-height: 1.35;
+            color: #1a202c;
+            background: #fff;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2d3748;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .header h1 {
+            font-size: 14pt;
+            color: #1a202c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .header p {
+            font-size: 8pt;
+            color: #4a5568;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card {
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #edf2f7;
+            padding: 5px 10px;
+            font-weight: 700;
+            font-size: 8.8pt;
+            color: #2b6cb0;
+            border-bottom: 1px solid #cbd5e0;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .card-body {
+            padding: 8px 10px;
+            font-size: 8.3pt;
+        }
+
+        .chk-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .chk-box {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1.5px solid #4a5568;
+            margin-right: 6px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        .chk-text {
+            color: #2d3748;
+        }
+
+        .chk-sub {
+            display: block;
+            font-size: 7.6pt;
+            color: #718096;
+            margin-top: 1px;
+        }
+
+        .footer-note {
+            margin-top: 14px;
+            padding: 8px 12px;
+            background: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 4px solid #dd6b20;
+            font-size: 8pt;
+            color: #7b341e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Чек-лист готовности к сессии сопровождения</h1>
+        <p>Двусторонний операционный чеклист подготовки участника и пространства (OSPAT / MAPS Protocol)</p>
+    </div>
+
+    <div class="grid-2">
+        <!-- ЛЕВАЯ КОЛОНКА: ДЛЯ КЛИЕНТА -->
+        <div class="col">
+            <div style="font-weight: bold; font-size: 10pt; color: #2b6cb0; border-bottom: 1px solid #2b6cb0; padding-bottom: 2px;">
+                ЧАСТЬ А: ДЛЯ УЧАСТНИКА (КЛИЕНТА)
+            </div>
+
+            <div class="card">
+                <div class="card-header">1. За 3–5 дней до процесса</div>
+                <div class="card-body">
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Фармако-аудит:</strong> отменены несогласованные БАДы (5-HTP, зверобой, ноотропы, энергетики).
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Токсикологическая разгрузка:</strong> полный отказ от алкоголя и психоактивных веществ.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Информационная диета:</strong> ограничены токсичные соцсети, триллеры и острые конфликты.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">2. Накануне сессии (вечер)</div>
+                <div class="card-body">
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Освобождение графика:</strong> день сессии и следующий день полностью свободны от работы.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Одежда и комфорт:</strong> подобрана свободная одежда (хлопок/лен), теплые носки, сменная футболка.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Сон и ужин:</strong> легкий ужин до 19:00, не менее 8 часов сна. Блокнот и ручка подготовлены.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">3. Утро в день погружения</div>
+                <div class="card-body">
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Питание:</strong> легкий завтрак за 3–4 ч до начала (овсянка/тост, чай). Без кофеина.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Логистика:</strong> организовано такси / встреча. За руль в день процесса не садиться!
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Настрой:</strong> готовность следовать правилу «Trust, Let Go, Be Open».
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА: ДЛЯ ТЕРАПЕВТА -->
+        <div class="col">
+            <div style="font-weight: bold; font-size: 10pt; color: #2d3748; border-bottom: 1px solid #2d3748; padding-bottom: 2px;">
+                ЧАСТЬ Б: ДЛЯ ВЕДУЩЕГО (СЕТТИНГ И ЗОНА)
+            </div>
+
+            <div class="card">
+                <div class="card-header">1. Пространство и атмосфера</div>
+                <div class="card-body">
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Изоляция:</strong> дверной звонок отключен, шум устранен, исключен вход посторонних лиц.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Свет и климат:</strong> шторы блэкаут, мягкий теплый торшер, проветривание, температура 21–23°C.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Ложе:</strong> удобный матрас, подушки, 2 пледа (легкий + тяжелый шерстяной), маска Mindfold.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">2. Акустика и оффлайн-звук</div>
+                <div class="card-body">
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Наушники и колонка:</strong> полноразмерные удобные наушники + внешняя акустика заряжены.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Оффлайн-плейлисты:</strong> фазы Ascent, Peak, Descent скачаны на устройство локально.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Авиарежим:</strong> 100% отключение звуков, звонков и вибровызовов на всех девайсах.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">3. Соматика, аптечка и этика</div>
+                <div class="card-body">
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Вода и соматика:</strong> кувшин с водой, трубочки, салфетки, ведро для рвоты, непромокаемая простыня.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Аптечка Harm Reduction:</strong> тонометр, сорбенты, спазмолитик, электролиты, свежие ягоды на выход.
+                        </div>
+                    </div>
+                    <div class="chk-item">
+                        <span class="chk-box"></span>
+                        <div class="chk-text">
+                            <strong>Контракт и безопасность:</strong> анкета проверена, Touch Consent подписан, телефон доверенного лица записан.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <strong>Главный фокус сессии:</strong> Недирективное присутствие (Non-directive spaceholding). Проводник держит пространство, обеспечивает соматическую безопасность и опирается на внутренний целительный разум (Inner Healing Intelligence) клиента.
+    </div>
+
+</body>
+</html>

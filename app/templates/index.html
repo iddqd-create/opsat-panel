@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSPAT | Clinical Control Center</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- i18n Dictionary -->
+    <script src="/static/js/i18n.js"></script>
+</head>
+<body>
+    <!-- Main Application Layout (Sidebar on Left, Content on Right) -->
+    <div class="app-layout">
+        <!-- Left Sidebar Navigation Menu -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="app-logo" onclick="switchTab('dashboard')" title="OSPAT Dashboard">
+                    <span class="logo-circle">🍄</span>
+                    <div class="logo-text">
+                        <span class="brand-title">OSPAT</span>
+                        <span class="brand-subtitle" data-i18n="brand_subtitle">Клинический пульт</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vertical Navigation Menu -->
+            <nav class="nav-tabs sidebar-nav">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <span class="tab-icon">📊</span> <span class="tab-label" data-i18n="tab_dashboard">Главная</span>
+                </button>
+                <button class="nav-tab" data-tab="protocol">
+                    <span class="tab-icon">🧭</span> <span class="tab-label" data-i18n="tab_protocol">Протокол терапии</span>
+                </button>
+                <button class="nav-tab" data-tab="session-pilot">
+                    <span class="tab-icon">⏱️</span> <span class="tab-label" data-i18n="tab_session_pilot">Сессионный пульт</span>
+                </button>
+                <button class="nav-tab" data-tab="clients">
+                    <span class="tab-icon">👥</span> <span class="tab-label" data-i18n="tab_clients">Клиенты</span>
+                </button>
+                <button class="nav-tab" data-tab="tools">
+                    <span class="tab-icon">📐</span> <span class="tab-label" data-i18n="tab_tools">Инструменты (WCS)</span>
+                </button>
+                <button class="nav-tab" data-tab="telegram-hub">
+                    <span class="tab-icon">✈️</span> <span class="tab-label" data-i18n="tab_telegram_hub">Отправка в TG</span>
+                </button>
+                <button class="nav-tab" data-tab="library">
+                    <span class="tab-icon">📚</span> <span class="tab-label" data-i18n="tab_library">База знаний</span>
+                </button>
+            </nav>
+
+            <!-- Sidebar Footer Controls -->
+            <div class="sidebar-footer">
+                <!-- Telegram Bot Status Pill -->
+                <div class="tg-status-pill" id="tgHeaderPill" onclick="switchTab('telegram-hub')" title="Статус Telegram-бота">
+                    <span class="status-dot"></span>
+                    <span class="status-text" id="tgStatusText" data-i18n="tg_checking">Проверка TG...</span>
+                </div>
+
+                <!-- Language Switcher -->
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                    <button class="lang-btn" data-lang="bg">🇧🇬 BG</button>
+                </div>
+
+                <!-- Settings Button -->
+                <button class="btn btn-secondary btn-sm sidebar-settings-btn" onclick="openSettingsModal()" data-i18n="btn_settings">⚙️ Настройки</button>
+            </div>
+        </aside>
+
+        <!-- Main App Container (Right side) -->
+        <main class="app-container">
+
+        <!-- ================= TAB 1: DASHBOARD ================= -->
+        <section id="tab-dashboard" class="tab-content active">
+            <div class="dashboard-hero">
+                <div class="hero-content">
+                    <span class="hero-badge" data-i18n="hero_badge">Open Source Psychedelic-Assisted Therapy</span>
+                    <h1 class="hero-title" data-i18n="hero_title">Протокол сопровождения сессий</h1>
+                    <p class="hero-desc" data-i18n="hero_desc">Безопасное, доказательное и этичное проведение псилоцибин-ассистированной терапии по клиническим стандартам MAPS, Imperial College London и Johns Hopkins.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" onclick="switchTab('session-pilot')" data-i18n="hero_btn_pilot">
+                            ▶️ Запустить пульт сессии
+                        </button>
+                        <button class="btn btn-outline btn-lg" onclick="switchTab('protocol')" data-i18n="hero_btn_protocol">
+                            🧭 Открыть пошаговый протокол
+                        </button>
+                        <button class="btn btn-secondary btn-lg" onclick="openNewClientModal()" data-i18n="hero_btn_client">
+                            ➕ Новый клиент
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-val" id="statClientsCount">0</div>
+                        <div class="stat-label" data-i18n="stat_clients">Активных клиентов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" id="statSessionsCount">0</div>
+                        <div class="stat-label" data-i18n="stat_sessions">Проведено сессий</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" id="statWCSCount">0</div>
+                        <div class="stat-label" data-i18n="stat_wcs">Замеров WCS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Pipeline Overview -->
+            <div class="section-block">
+                <div class="section-header">
+                    <h2 data-i18n="phases_title">3 Ключевые фазы протокола терапии</h2>
+                    <span class="section-sub" data-i18n="phases_sub">Нажмите на фазу для перехода к шагам или отправки материалов</span>
+                </div>
+                <div class="pipeline-grid">
+                    <div class="phase-card" onclick="openProtocolPhase('prep')">
+                        <div class="phase-number" data-i18n="phase1_num">ФАЗА 01</div>
+                        <h3 data-i18n="phase1_title">Подготовка и Скрининг</h3>
+                        <p data-i18n="phase1_desc">2–3 встречи по 60–90 мин. Верификация противопоказаний, снятие невротических ожиданий (unpriming), формулирование намерения, протокол Touch Consent.</p>
+                        <div class="phase-meta">
+                            <span class="badge badge-prep" data-i18n="phase1_meta">1-2 недели до сессии</span>
+                            <button class="btn-link" onclick="event.stopPropagation(); quickSend('screening_pdf')" data-i18n="phase1_btn">Отправить анкету ✈️</button>
+                        </div>
+                    </div>
+
+                    <div class="phase-card phase-active" onclick="openProtocolPhase('nav')">
+                        <div class="phase-number" data-i18n="phase2_num">ФАЗА 02</div>
+                        <h3 data-i18n="phase2_title">День сессии и Навигация</h3>
+                        <p data-i18n="phase2_desc">5–8 часов глубокого погружения. Недирективное удержание пространства (95% тишины), музыкальная архитектура волны, протоколы кризисной помощи.</p>
+                        <div class="phase-meta">
+                            <span class="badge badge-session" data-i18n="phase2_meta">День погружения</span>
+                            <button class="btn-link" onclick="event.stopPropagation(); switchTab('session-pilot')" data-i18n="phase2_btn">Пульт сессии ⏱️</button>
+                        </div>
+                    </div>
+
+                    <div class="phase-card" onclick="openProtocolPhase('integ')">
+                        <div class="phase-number" data-i18n="phase3_num">ФАЗА 03</div>
+                        <h3 data-i18n="phase3_title">Интеграция и Нейропластичность</h3>
+                        <p data-i18n="phase3_desc">Окно гиперпластичности (14–28 дней). Встречи на 24-48ч, 7-10 день и 3-4 неделю. 4 уровня интеграции (Тело, Эмоции, Смыслы, Действия), мораторий 30 дней.</p>
+                        <div class="phase-meta">
+                            <span class="badge badge-integ" data-i18n="phase3_meta">2-4 недели после</span>
+                            <button class="btn-link" onclick="event.stopPropagation(); quickSend('wcs_pdf')" data-i18n="phase3_btn">Отправить WCS ✈️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Clients & Quick Actions -->
+            <div class="two-col-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 data-i18n="card_curr_clients">Текущие клиенты</h3>
+                        <button class="btn btn-sm btn-outline" onclick="switchTab('clients')" data-i18n="btn_all_clients">Все клиенты →</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="dashboardClientsList" class="client-mini-list">
+                            <div class="empty-state">Загрузка клиентов...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 data-i18n="card_quick_send">Быстрая отправка файлов в Telegram</h3>
+                        <button class="btn btn-sm btn-outline" onclick="switchTab('telegram-hub')" data-i18n="btn_send_center">Центр отправки →</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-send-grid">
+                            <div class="quick-send-item" onclick="quickSend('screening_pdf')">
+                                <span class="qs-icon">📄</span>
+                                <div class="qs-info">
+                                    <strong>Анкета скрининга (PDF)</strong>
+                                    <small>Скрининг рисков и соматики</small>
+                                </div>
+                                <span class="qs-arrow">✈️</span>
+                            </div>
+                            <div class="quick-send-item" onclick="quickSend('checklist_pdf')">
+                                <span class="qs-icon">📋</span>
+                                <div class="qs-info">
+                                    <strong>Чек-лист готовности (PDF)</strong>
+                                    <small>Диета, сон, одежда, доверенное лицо</small>
+                                </div>
+                                <span class="qs-arrow">✈️</span>
+                            </div>
+                            <div class="quick-send-item" onclick="quickSend('wcs_pdf')">
+                                <span class="qs-icon">📊</span>
+                                <div class="qs-info">
+                                    <strong>Шкала Розалинд Уоттс WCS (PDF)</strong>
+                                    <small>Замер связанности (до / после)</small>
+                                </div>
+                                <span class="qs-arrow">✈️</span>
+                            </div>
+                            <div class="quick-send-item" onclick="quickSend('post_01_difficult')">
+                                <span class="qs-icon">🌪️</span>
+                                <div class="qs-info">
+                                    <strong>Памятка: Сложнейший опыт</strong>
+                                    <small>Техника "In and Through" (Dive in)</small>
+                                </div>
+                                <span class="qs-arrow">✈️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 2: STEP-BY-STEP PROTOCOL ================= -->
+        <section id="tab-protocol" class="tab-content">
+            <div class="section-header">
+                <div>
+                    <h2 data-i18n="protocol_title">Пошаговое клиническое руководство</h2>
+                    <span class="section-sub" data-i18n="protocol_sub">Полный протокол OSPAT: от первого контакта до завершения окна нейропластичности</span>
+                </div>
+                <div class="protocol-nav-btns">
+                    <button class="btn btn-secondary active" onclick="switchProtocolSub('prep')" data-i18n="sub_prep_btn">1. Подготовка</button>
+                    <button class="btn btn-secondary" onclick="switchProtocolSub('session')" data-i18n="sub_sess_btn">2. День сессии</button>
+                    <button class="btn btn-secondary" onclick="switchProtocolSub('integ')" data-i18n="sub_integ_btn">3. Интеграция</button>
+                </div>
+            </div>
+
+            <!-- Subphase 1: Preparation -->
+            <div id="protocol-sub-prep" class="protocol-step-view active">
+                <div class="step-card">
+                    <div class="step-card-header">
+                        <span class="step-badge">ШАГ 1.1</span>
+                        <h3 data-i18n="step11_title">Медицинский и психиатрический фильтр (Скрининг)</h3>
+                        <button class="btn btn-outline btn-sm" onclick="quickSend('screening_pdf')" data-i18n="step11_btn">Отправить анкету скрининга в Telegram ✈️</button>
+                    </div>
+                    <div class="step-card-body">
+                        <div class="alert alert-warning">
+                            <strong data-i18n="step11_contra_title">Критические абсолютные противопоказания:</strong>
+                            <ul>
+                                <li data-i18n="step11_contra_1">Биполярное аффективное расстройство I типа, шизофрения или психотические эпизоды в личном или семейном анамнезе 1-й линии.</li>
+                                <li data-i18n="step11_contra_2">Тяжелая неконтролируемая артериальная гипертензия, аневризмы, перенесенный инфаркт/инсульт.</li>
+                                <li data-i18n="step11_contra_3">Прием антидепрессантов класса ИМАО (MAOI) и активных СИОЗС/СИОЗСиН (риск серотонинового синдрома или блокады рецепторов 5-HT2A).</li>
+                                <li data-i18n="step11_contra_4">Беременность и грудное вскармливание.</li>
+                            </ul>
+                        </div>
+                        <p data-i18n="step11_tasks"><strong>Задачи терапевта:</strong> Изучить анкету до встречи, перепроверить сердечно-сосудистые факторы, согласовать плавный детокс от несовместимых БАД (5-HTP, зверобой, стимуляторы) за 5–7 дней.</p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-card-header">
+                        <span class="step-badge">ШАГ 1.2</span>
+                        <h3 data-i18n="step12_title">Деконструкция запроса: от Эго-целей к Намерению (Unpriming)</h3>
+                    </div>
+                    <div class="step-card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="th_ego">Ошибочная эго-установка клиента</th>
+                                    <th data-i18n="th_reframing">Рефрейминг проводника (Unpriming)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><em>«Я хочу окончательно избавиться от тревоги / депрессии»</em></td>
+                                    <td>«Мы не объявляем войну тревоге. Мы пойдем навстречу источнику и спросим, от чего она защищает».</td>
+                                </tr>
+                                <tr>
+                                    <td><em>«Я хочу пережить самадхи / увидеть космос»</em></td>
+                                    <td>«Мозг покажет не то, что хочется эго, а то, где скопилось максимальное напряжение. Готовы ли вы встретиться с обычной грустью?»</td>
+                                </tr>
+                                <tr>
+                                    <td><em>«Почините меня, пожалуйста»</em></td>
+                                    <td>«Исцеление производит ваш собственный внутренний целительный разум (Inner Healing Intelligence). Я лишь держу безопасный берег».</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-card-header">
+                        <span class="step-badge">ШАГ 1.3</span>
+                        <h3 data-i18n="step13_title">Психообразование и Инструктаж («Trust, Let Go, Be Open»)</h3>
+                        <button class="btn btn-outline btn-sm" onclick="quickSend('post_02_framing')" data-i18n="step13_btn">Отправить памятку в TG ✈️</button>
+                    </div>
+                    <div class="step-card-body">
+                        <div class="three-pillars">
+                            <div class="pillar">
+                                <h4 data-i18n="pillar1_title">1. TRUST (Доверяй)</h4>
+                                <p data-i18n="pillar1_desc">Доверие к мудрости своего бессознательного, биологическому телу и проводнику.</p>
+                            </div>
+                            <div class="pillar">
+                                <h4 data-i18n="pillar2_title">2. LET GO (Отпускай)</h4>
+                                <p data-i18n="pillar2_desc">При попытке контролировать сюжет нарастает тревога. Отпустить руль — единственный путь к облегчению.</p>
+                            </div>
+                            <div class="pillar">
+                                <h4 data-i18n="pillar3_title">3. BE OPEN (Будь открыт)</h4>
+                                <p data-i18n="pillar3_desc">Готовность встретить всё: слезы, тремор, восторг, тишину, предков или образы страха.</p>
+                            </div>
+                        </div>
+                        <div class="quote-box">
+                            <strong data-i18n="script_divein_title">Речевой скрипт для клиента (Dive In):</strong>
+                            <p data-i18n="script_divein_text">«Если перед вами появится чудовище, бездна или комната страха — ни в коем случае не убегайте. В измененном состоянии бегство усиливает кошмар. Сделайте шаг прямо в центр чудовища. Подойдите вплотную и спросите: "Кто ты? Чему ты пришел меня научить?" Вы увидите, как морок рассеивается, превращаясь в освобожденную силу».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-card-header">
+                        <span class="step-badge">ШАГ 1.4</span>
+                        <h3 data-i18n="step14_title">Протокол тактильного контакта (Touch Consent)</h3>
+                    </div>
+                    <div class="step-card-body">
+                        <p data-i18n="touch_intro">В психоделической терапии прикосновение — мощный ресурс, требующий абсолютной этической строгости:</p>
+                        <ul>
+                            <li data-i18n="touch_rule1"><strong>Зоны допустимого заземления:</strong> ладонь клиента (рука в руке), плечо, стопы через плед для заземления.</li>
+                            <li data-i18n="touch_rule2"><strong>Категорически запрещено:</strong> прикосновения к лицу, груди, животу, бедрам и интимным зонам.</li>
+                            <li data-i18n="touch_rule3"><strong>Принцип двойного согласия:</strong> даже при наличии подписанного согласия, на сессии терапевт шепотом переспрашивает: <em>«Я вижу, сейчас поднимается сильная волна. Хочешь, я положу руку тебе на плечо или возьму за руку?»</em> — и ждет ясного ответа.</li>
+                            <li data-i18n="touch_rule4"><strong>Тест на прикосновение:</strong> проводится на подготовке (положить руку на плечо на 10 сек, проверить телесный отклик).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subphase 2: Session Day -->
+            <div id="protocol-sub-session" class="protocol-step-view">
+                <div class="step-card">
+                    <div class="step-card-header">
+                        <span class="step-badge">ФАЗОВАЯ КРИВАЯ</span>
+                        <h3 data-i18n="phase_curve_title">Анатомия сессионного дня (5–8 часов)</h3>
+                        <button class="btn btn-primary btn-sm" onclick="switchTab('session-pilot')" data-i18n="phase_curve_btn">Перейти в пульт сессии ⏱️</button>
+                    </div>
+                    <div class="step-card-body">
+                        <div class="timeline-visual">
+                            <div class="tl-segment tl-ascent">
+                                <strong data-i18n="ascent_title">Фаза I: Вход (Ascent)</strong>
+                                <span data-i18n="ascent_time">0:00 – 1:15</span>
+                                <small data-i18n="ascent_desc">Соматика, озноб, паника входа, стимуляция вагуса</small>
+                            </div>
+                            <div class="tl-segment tl-peak">
+                                <strong data-i18n="peak_title">Фаза II: Пик (Peak)</strong>
+                                <span data-i18n="peak_time">1:15 – 3:30</span>
+                                <small data-i18n="peak_desc">Растворение эго, катарсис, 95% тишины, музыка</small>
+                            </div>
+                            <div class="tl-segment tl-descent">
+                                <strong data-i18n="descent_title">Фаза III: Спад (Descent)</strong>
+                                <span data-i18n="descent_time">3:30 – 6:00+</span>
+                                <small data-i18n="descent_desc">Возвращение, светлая музыка, вода, чай, заземление</small>
+                            </div>
+                        </div>
+
+                        <div class="rules-box">
+                            <h4 data-i18n="rules_title">Главные клинические правила проводника:</h4>
+                            <ol>
+                                <li data-i18n="rule_1"><strong>Non-Directive Spaceholding:</strong> 95% времени вы молчите. Не задавайте аналитических вопросов («О чем ты думаешь?»), это выдергивает клиента в кору мозга.</li>
+                                <li data-i18n="rule_2"><strong>Соматическая разрядка:</strong> дрожь, слезы, глубокие вздохи — здоровая разрядка травмы по Питеру Левину. Не подавляйте тремор!</li>
+                                <li data-i18n="rule_3"><strong>Никаких интерпретаций на выходе:</strong> не навязывайте клиенту психологические смыслы («Это было про твою мать?»). Дайте опыту отстояться.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subphase 3: Integration -->
+            <div id="protocol-sub-integ" class="protocol-step-view">
+                <div class="step-card">
+                    <div class="step-card-header">
+                        <span class="step-badge">ФАЗА 03</span>
+                        <h3 data-i18n="integ_title">Окно нейропластичности и 4 Уровня интеграции</h3>
+                        <button class="btn btn-outline btn-sm" onclick="quickSend('wcs_pdf')" data-i18n="integ_wcs_btn">Отправить опросник WCS в Telegram ✈️</button>
+                    </div>
+                    <div class="step-card-body">
+                        <div class="alert alert-info">
+                            <strong data-i18n="bio_basis_title">Биологическая основа:</strong> <span data-i18n="bio_basis_desc">В течение 14–28 дней активность узлов DMN снижена, а пластичность синапсов (BDNF) максимальна. Новые нейронные пути закрепляются через конкретные действия и заботу о теле.</span>
+                        </div>
+
+                        <div class="four-levels-grid">
+                            <div class="level-box">
+                                <span class="lvl-num">1</span>
+                                <h4 data-i18n="lvl1_title">Уровень Тела (Somatic)</h4>
+                                <p data-i18n="lvl1_desc">Сон, питание, солевые ванны магния, контакт с природой, прогулки без телефона. Снятие остаточного напряжения.</p>
+                            </div>
+                            <div class="level-box">
+                                <span class="lvl-num">2</span>
+                                <h4 data-i18n="lvl2_title">Уровень Эмоций</h4>
+                                <p data-i18n="lvl2_desc">Легализация чувств. Нормализация постсессионного спада на 3-5 день (The Vulnerability Dip): рецепторы отдыхают.</p>
+                            </div>
+                            <div class="level-box">
+                                <span class="lvl-num">3</span>
+                                <h4 data-i18n="lvl3_title">Уровень Смыслов</h4>
+                                <p data-i18n="lvl3_desc">Перевод символов и метафор путешествия в биографический контекст: «Что этот замок значит в твоей жизни?»</p>
+                            </div>
+                            <div class="level-box">
+                                <span class="lvl-num">4</span>
+                                <h4 data-i18n="lvl4_title">Уровень Поведения</h4>
+                                <p data-i18n="lvl4_desc">Одно конкретное микродействие на неделе (сказать «нет», записаться на вокал, погулять, установить границу).</p>
+                            </div>
+                        </div>
+
+                        <div class="moratorium-card">
+                            <h4 data-i18n="moratorium_title">🛑 Золотое правило «Моратория 30 дней»:</h4>
+                            <p data-i18n="moratorium_desc"><strong>Категорически запрещено принимать необратимые решения в первые недели:</strong> разводиться, бросать работу, продавать недвижимость, уезжать в ашрам или публично исповедоваться в соцсетях. Любому инсайту необходимо время остыть.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 3: LIVE SESSION PILOT ================= -->
+        <section id="tab-session-pilot" class="tab-content">
+            <div class="pilot-layout">
+                <!-- Left: Timer & Phase Tracker -->
+                <div class="pilot-main">
+                    <div class="pilot-header-card">
+                        <div class="pilot-client-selector">
+                            <label data-i18n="pilot_client_lbl">Пациент / Клиент:</label>
+                            <select id="sessionClientSelect" class="form-control" onchange="onSessionClientChanged()">
+                                <option value="" data-i18n="pilot_client_placeholder">-- Выберите клиента для сессии --</option>
+                            </select>
+                        </div>
+                        <div class="session-dose-info">
+                            <span><span data-i18n="pilot_substance_lbl">Препарат:</span> <strong>Psilocybin</strong></span>
+                            <span><span data-i18n="pilot_dose_lbl">Дозировка:</span> <input type="text" id="sessionDoseInput" class="input-inline" value="3.0 г" placeholder="3.0 g"></span>
+                            <span id="sessionStatusBadge" class="badge badge-prep" data-i18n="pilot_status_ready">Готов к запуску</span>
+                        </div>
+                    </div>
+
+                    <!-- Large Timer Display -->
+                    <div class="timer-display-card">
+                        <div class="current-phase-banner" id="pilotPhaseBanner">
+                            <span class="phase-badge" id="pilotPhaseBadge">ФАЗА: НЕ НАЧАТА</span>
+                            <h2 id="pilotPhaseTitle" data-i18n="pilot_wait_start">Ожидание старта</h2>
+                            <p id="pilotPhaseHint" data-i18n="pilot_wait_hint">Убедитесь, что клиент удобно уложен, маска и наушники проверены, телефон отключен.</p>
+                        </div>
+
+                        <div class="clock-face">
+                            <div class="clock-digits" id="sessionTimerDigits">00:00:00</div>
+                            <div class="clock-sub" id="sessionPhaseProgress">Прогресс фазы: 0%</div>
+                        </div>
+
+                        <!-- Progress Bar across 3 phases -->
+                        <div class="timeline-progress-bar">
+                            <div class="progress-segment seg-ascent" title="Ascent: 0:00 - 1:15">
+                                <span class="seg-label" data-i18n="ascent_title">Вход (0 - 1:15)</span>
+                                <div class="seg-fill" id="fillAscent"></div>
+                            </div>
+                            <div class="progress-segment seg-peak" title="Peak: 1:15 - 3:30">
+                                <span class="seg-label" data-i18n="peak_title">Пик (1:15 - 3:30)</span>
+                                <div class="seg-fill" id="fillPeak"></div>
+                            </div>
+                            <div class="progress-segment seg-descent" title="Descent: 3:30 - 6:00+">
+                                <span class="seg-label" data-i18n="descent_title">Спад (3:30 - 6:00+)</span>
+                                <div class="seg-fill" id="fillDescent"></div>
+                            </div>
+                        </div>
+
+                        <!-- Timer Controls -->
+                        <div class="timer-controls">
+                            <button id="btnStartSession" class="btn btn-primary btn-lg" onclick="startOrResumeSession()" data-i18n="btn_start_session">
+                                ▶️ Запустить сессию
+                            </button>
+                            <button id="btnPauseSession" class="btn btn-secondary btn-lg" onclick="pauseSession()" disabled data-i18n="btn_pause_session">
+                                ⏸️ Пауза
+                            </button>
+                            <button id="btnEndSession" class="btn btn-danger btn-lg" onclick="finishSession()" disabled data-i18n="btn_end_session">
+                                ⏹️ Завершить сессию
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Event Logger -->
+                    <div class="event-logger-card">
+                        <div class="card-header">
+                            <h3 data-i18n="event_logger_title">Журнал событий сессии (Event Logger)</h3>
+                            <span class="text-muted" data-i18n="event_logger_sub">Фиксация ключевых реакций в 1 клик с временной меткой</span>
+                        </div>
+                        <div class="quick-event-buttons">
+                            <button class="event-btn" onclick="quickLogEvent('Dose Administered', 'Client took agreed dose. Process started.')" data-i18n="ev_dose">
+                                💊 Принятие дозы
+                            </button>
+                            <button class="event-btn" onclick="quickLogEvent('Nausea / Somatic Discomfort', 'Nausea report. Basin provided, calm breathing.')" data-i18n="ev_nausea">
+                                🤢 Тошнота / Дискомфорт
+                            </button>
+                            <button class="event-btn" onclick="quickLogEvent('Catharsis / Tears', 'Deep emotional release, tears. Silent holding space.')" data-i18n="ev_tears">
+                                💧 Слезы / Катарсис
+                            </button>
+                            <button class="event-btn" onclick="quickLogEvent('Vegetative Tremor', 'Limb shaking/tremor. Body releasing trauma energy.')" data-i18n="ev_tremor">
+                                ⚡ Тремор / Разрядка
+                            </button>
+                            <button class="event-btn" onclick="quickLogEvent('Touch Grounding', 'Client requested hand support. Touch consent applied.')" data-i18n="ev_touch">
+                                🤝 Тактильный контакт
+                            </button>
+                            <button class="event-btn" onclick="quickLogEvent('Removed Mask', 'Client opened eyes. Gentle cue to return inside.')" data-i18n="ev_mask">
+                                👁️ Снял маску
+                            </button>
+                            <button class="event-btn" onclick="quickLogEvent('Vitals Check', 'Blood pressure and pulse checked and stable.')" data-i18n="ev_vitals">
+                                🩺 Замер пульса/АД
+                            </button>
+                            <button class="event-btn" onclick="promptCustomEvent()" data-i18n="ev_custom">
+                                ✍️ Записать цитату / наблюдение...
+                            </button>
+                        </div>
+
+                        <!-- Live Session Log Table -->
+                        <div class="session-log-stream">
+                            <table class="log-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 90px;" data-i18n="th_time">Время</th>
+                                        <th style="width: 100px;" data-i18n="th_phase">Фаза</th>
+                                        <th style="width: 160px;" data-i18n="th_event">Событие</th>
+                                        <th data-i18n="th_note">Заметка проводника</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sessionLogsTbody">
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted" data-i18n="log_empty">События сессии будут появляться здесь...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar: Crisis Interventions & Checklists -->
+                <div class="pilot-sidebar">
+                    <!-- Crisis Intervention Cards -->
+                    <div class="crisis-card">
+                        <div class="crisis-header">
+                            <span class="crisis-icon">🚨</span>
+                            <h4 data-i18n="crisis_title">Кризисная шпаргалка (1-клик помощь)</h4>
+                        </div>
+                        <div class="crisis-accordion">
+                            <div class="crisis-item" onclick="toggleCrisisItem(this)">
+                                <div class="crisis-title">
+                                    <span data-i18n="crisis_1_title">🌀 Паническая петля («Я схожу с ума»)</span>
+                                    <span class="chevron">▼</span>
+                                </div>
+                                <div class="crisis-body">
+                                    <div class="script-quote" data-i18n="crisis_1_script">
+                                        «Ты в полной безопасности. Твое тело на мягком диване. Я здесь, с тобой. Это действие процесса, оно обязательно закончится. Ты не сходишь с ума. Дыши вместе со мной: медленный вдох... и длинный мягкий выдох».
+                                    </div>
+                                    <p><em data-i18n="crisis_1_somatic">Соматика: предложить руку скалой, синхронизировать дыхание.</em></p>
+                                </div>
+                            </div>
+
+                            <div class="crisis-item" onclick="toggleCrisisItem(this)">
+                                <div class="crisis-title">
+                                    <span data-i18n="crisis_2_title">💀 Страх смерти Эго («Я умираю»)</span>
+                                    <span class="chevron">▼</span>
+                                </div>
+                                <div class="crisis-body">
+                                    <div class="script-quote" data-i18n="crisis_2_script">
+                                        «Твое физическое тело в порядке, дыхание идет само. Умирает не тело — растворяется старая форма твоего опыта. Сдайся этой смерти. Сделай вдох и шагни в эту тишину. Посмотри, что ждет тебя за ней».
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crisis-item" onclick="toggleCrisisItem(this)">
+                                <div class="crisis-title">
+                                    <span data-i18n="crisis_3_title">🤢 Тошнота и соматическая боль</span>
+                                    <span class="chevron">▼</span>
+                                </div>
+                                <div class="crisis-body">
+                                    <p data-i18n="crisis_3_desc">Не блокировать рвоту противорвотными (если нет патологии). Поднести ведро, придержать спину. Тошнота — психосоматическое очищение от токсичных обид. После: чистая вода, протереть лицо.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Room & Setting Checklist -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 data-i18n="room_setting_title">Чек-лист сеттинга</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="setting-checklist">
+                                <li><label><input type="checkbox" id="chkRoomQuiet"> <span data-i18n="chk_quiet">Тишина, телефоны в авиарежиме</span></label></li>
+                                <li><label><input type="checkbox" id="chkLightDim"> <span data-i18n="chk_dim">Мягкий полумрак / шторы закрыты</span></label></li>
+                                <li><label><input type="checkbox" id="chkPlaylist"> <span data-i18n="chk_playlist">Плейлист скачан ОФФЛАЙН</span></label></li>
+                                <li><label><input type="checkbox" id="chkWater"> <span data-i18n="chk_water">Вода, стакан с трубочкой</span></label></li>
+                                <li><label><input type="checkbox" id="chkMask"> <span data-i18n="chk_mask">Маска на глаза готова</span></label></li>
+                                <li><label><input type="checkbox" id="chkPlaid"> <span data-i18n="chk_plaid">Утяжеленный плед рядом</span></label></li>
+                                <li><label><input type="checkbox" id="chkBucket"> <span data-i18n="chk_bucket">Ведро и влажные салфетки</span></label></li>
+                                <li><label><input type="checkbox" id="chkEmergency"> <span data-i18n="chk_emergency">Номер доверенного лица записан</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 4: CLIENTS CRM ================= -->
+        <section id="tab-clients" class="tab-content">
+            <div class="section-header">
+                <div>
+                    <h2 data-i18n="crm_title">База пациентов / клиентов</h2>
+                    <span class="section-sub" data-i18n="crm_sub">Управление стадиями протокола, историей сессий, замерами WCS и контактами Telegram</span>
+                </div>
+                <button class="btn btn-primary" onclick="openNewClientModal()" data-i18n="btn_add_client">➕ Добавить клиента</button>
+            </div>
+
+            <div class="clients-layout">
+                <!-- Clients List Column -->
+                <div class="clients-list-card">
+                    <div class="search-box">
+                        <input type="text" id="clientSearchInput" class="form-control" data-i18n-placeholder="crm_search_placeholder" placeholder="🔍 Поиск по имени или телефону..." oninput="filterClients()">
+                    </div>
+                    <div id="clientsCardsContainer" class="client-cards-list">
+                    </div>
+                </div>
+
+                <!-- Client Detail Dossier -->
+                <div class="client-dossier-card" id="clientDossierCard">
+                    <div class="empty-state" id="clientDossierEmpty">
+                        <span class="empty-icon">👤</span>
+                        <h3 data-i18n="dossier_empty_title">Выберите клиента из списка</h3>
+                        <p data-i18n="dossier_empty_desc">Здесь отобразится полная клиническая карта, стадия протокола, результаты тестирования WCS и логи сессий.</p>
+                    </div>
+
+                    <div id="clientDossierContent" style="display: none;">
+                        <div class="dossier-header">
+                            <div>
+                                <h2 id="dossierName">Client Name</h2>
+                                <div class="dossier-meta">
+                                    <span id="dossierStageBadge" class="badge badge-prep">Подготовка</span>
+                                    <span id="dossierTg" class="text-muted">TG: @username</span>
+                                    <span id="dossierPhone" class="text-muted">Тел: +7...</span>
+                                </div>
+                            </div>
+                            <div class="dossier-actions">
+                                <button class="btn btn-sm btn-outline" onclick="openEditClientModal()" data-i18n="btn_edit">✏️ Редактировать</button>
+                                <button class="btn btn-sm btn-primary" onclick="quickSendForCurrentClient()" data-i18n="btn_send_tg_client">✈️ Отправить файл в TG</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteCurrentClient()">🗑️</button>
+                            </div>
+                        </div>
+
+                        <!-- Dossier Tabs -->
+                        <div class="dossier-tabs">
+                            <button class="d-tab active" onclick="switchDossierTab('overview')" data-i18n="tab_overview">Обзор и анамнез</button>
+                            <button class="d-tab" onclick="switchDossierTab('sessions')" data-i18n="tab_sessions">Сессии и логи</button>
+                            <button class="d-tab" onclick="switchDossierTab('wcs')" data-i18n="tab_wcs_dyn">Шкала WCS (Динамика)</button>
+                        </div>
+
+                        <!-- Dossier Content: Overview -->
+                        <div id="dossier-view-overview" class="dossier-section active">
+                            <div class="dossier-grid">
+                                <div class="info-group">
+                                    <label data-i18n="lbl_intention">Сформулированное намерение (Intention):</label>
+                                    <div class="info-val-box" id="dossierIntention">—</div>
+                                </div>
+                                <div class="info-group">
+                                    <label data-i18n="lbl_medical">Медицинские заметки / Скрининг:</label>
+                                    <div class="info-val-box" id="dossierMedical">—</div>
+                                </div>
+                                <div class="info-group">
+                                    <label data-i18n="lbl_emergency">Контакты доверенного лица (для возвращения домой):</label>
+                                    <div class="info-val-box" id="dossierEmergency">—</div>
+                                </div>
+                                <div class="info-group">
+                                    <label data-i18n="lbl_therapist_notes">Заметки терапевта:</label>
+                                    <div class="info-val-box" id="dossierNotes">—</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dossier Content: Sessions -->
+                        <div id="dossier-view-sessions" class="dossier-section">
+                            <div id="dossierSessionsList">
+                            </div>
+                        </div>
+
+                        <!-- Dossier Content: WCS Graph & Tests -->
+                        <div id="dossier-view-wcs" class="dossier-section">
+                            <div class="wcs-comparison-header">
+                                <h4 data-i18n="wcs_dyn_title">Динамика связанности (Watts Connectedness Scale)</h4>
+                                <button class="btn btn-sm btn-outline" onclick="openWcsForClient()" data-i18n="btn_take_wcs">➕ Провести замер WCS</button>
+                            </div>
+                            <div id="dossierWcsContainer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 5: TOOLS (WCS & CHECKLIST) ================= -->
+        <section id="tab-tools" class="tab-content">
+            <div class="section-header">
+                <div>
+                    <h2 data-i18n="tools_title">Клинические шкалы и интерактивные инструменты</h2>
+                    <span class="section-sub" data-i18n="tools_sub">Шкала связности Розалинд Уоттс (WCS) и Интерактивный чек-лист готовности</span>
+                </div>
+                <div class="tool-switch-btns">
+                    <button class="btn btn-secondary active" onclick="switchToolSub('wcs')" data-i18n="btn_tool_wcs">📊 Шкала WCS (21 вопрос)</button>
+                    <button class="btn btn-secondary" onclick="switchToolSub('checklist')" data-i18n="btn_tool_cl">📋 Чек-лист готовности</button>
+                </div>
+            </div>
+
+            <!-- Tool 1: Watts Connectedness Scale -->
+            <div id="tool-sub-wcs" class="tool-view active">
+                <div class="wcs-top-bar">
+                    <div class="wcs-client-bind">
+                        <label data-i18n="wcs_client_lbl">Привязать к клиенту:</label>
+                        <select id="wcsClientSelect" class="form-control">
+                            <option value="" data-i18n="wcs_client_placeholder">-- Без сохранения в профиль --</option>
+                        </select>
+                    </div>
+                    <div class="wcs-stage-bind">
+                        <label data-i18n="wcs_stage_lbl">Этап замера:</label>
+                        <select id="wcsStageSelect" class="form-control">
+                            <option value="baseline" data-i18n="wcs_opt_baseline">Базовый уровень (Baseline: до сессии)</option>
+                            <option value="integration" data-i18n="wcs_opt_integ">Интеграция (через 7-14 дней после сессии)</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveWcsAssessment()" data-i18n="btn_save_wcs">💾 Сохранить результат</button>
+                </div>
+
+                <!-- Real-time Score Dashboard -->
+                <div class="wcs-score-dashboard">
+                    <div class="wcs-score-card">
+                        <span class="wcs-score-label" data-i18n="wcs_self_lbl">Связь с собой</span>
+                        <div class="wcs-score-val"><span id="wcsScoreSelf">0</span> / 42</div>
+                    </div>
+                    <div class="wcs-score-card">
+                        <span class="wcs-score-label" data-i18n="wcs_others_lbl">Связь с другими</span>
+                        <div class="wcs-score-val"><span id="wcsScoreOthers">0</span> / 42</div>
+                    </div>
+                    <div class="wcs-score-card">
+                        <span class="wcs-score-label" data-i18n="wcs_world_lbl">Связь с миром</span>
+                        <div class="wcs-score-val"><span id="wcsScoreWorld">0</span> / 42</div>
+                    </div>
+                    <div class="wcs-score-card wcs-total-card">
+                        <span class="wcs-score-label" data-i18n="wcs_total_lbl">Общий балл связанности</span>
+                        <div class="wcs-score-val"><span id="wcsScoreTotal">0</span> / 126</div>
+                        <div class="wcs-badge-level" id="wcsScoreLevel" data-i18n="wcs_lvl_disconn">Отчуждение</div>
+                    </div>
+                </div>
+
+                <!-- 21 Questions Form -->
+                <div class="wcs-form-container" id="wcsQuestionsContainer">
+                </div>
+            </div>
+
+            <!-- Tool 2: Interactive Checklist -->
+            <div id="tool-sub-checklist" class="tool-view">
+                <div class="checklist-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Часть А: Чек-лист для участника (Клиента)</h3>
+                            <button class="btn btn-sm btn-outline" onclick="quickSend('checklist_pdf')">Отправить PDF в TG ✈️</button>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="cl-sub">За 3–5 дней до сессии</h4>
+                            <label class="cl-item"><input type="checkbox"> Фармакологический протокол: отменены несовместимые БАД (5-HTP, зверобой, стимуляторы)</label>
+                            <label class="cl-item"><input type="checkbox"> Токсикологическая разгрузка: исключен алкоголь, снижен кофеин</label>
+                            <label class="cl-item"><input type="checkbox"> Информационный детокс: исключены конфликтные новости и соцсети</label>
+                            <label class="cl-item"><input type="checkbox"> Дневник намерения: записан ключевой вопрос или вектор запроса</label>
+
+                            <h4 class="cl-sub">Вечер накануне</h4>
+                            <label class="cl-item"><input type="checkbox"> Освобождение графика: день сессии и следующий день свободны от работы</label>
+                            <label class="cl-item"><input type="checkbox"> Бытовые договоренности: дети/близкие устроены, звонки отключены</label>
+                            <label class="cl-item"><input type="checkbox"> Сон: ранний отбой (не менее 8 часов), легкий ужин до 19:00</label>
+                            <label class="cl-item"><input type="checkbox"> Одежда: натуральные ткани (хлопок/лен), теплые носки, сменная футболка</label>
+
+                            <h4 class="cl-sub">Утро в день сессии</h4>
+                            <label class="cl-item"><input type="checkbox"> Легкий завтрак за 3-4 часа до начала (зеленый чай, овсянка на воде)</label>
+                            <label class="cl-item"><input type="checkbox"> Логистика: решен вопрос с такси или сопровождающим. За руль не садиться!</label>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Часть Б: Чек-лист для проводника (Сеттинг)</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="cl-sub">Пространство и Комфорт</h4>
+                            <label class="cl-item"><input type="checkbox"> Изолированная комната без посторонних шумов и звонков в дверь</label>
+                            <label class="cl-item"><input type="checkbox"> Световой режим: плотные шторы блэкаут, теплый рассеянный свет</label>
+                            <label class="cl-item"><input type="checkbox"> Климат: температура 21–23°C, отсутствие сквозняков</label>
+                            <label class="cl-item"><input type="checkbox"> Матрас, 2 подушки, легкий и тяжелый утяжеленный плед</label>
+                            <label class="cl-item"><input type="checkbox"> Анатомическая маска для глаз Mindfold</label>
+
+                            <h4 class="cl-sub">Звук и Акустика</h4>
+                            <label class="cl-item"><input type="checkbox"> Качественные закрытые наушники + внешняя колонка резерва</label>
+                            <label class="cl-item"><input type="checkbox"> Плейлисты скачаны ОФФЛАЙН в высоком качестве</label>
+                            <label class="cl-item"><input type="checkbox"> Все телефоны и гаджеты в авиарежиме (100% тишина)</label>
+
+                            <h4 class="cl-sub">Гигиена, Соматика и Безопасность</h4>
+                            <label class="cl-item"><input type="checkbox"> Вода комнатной температуры, стакан с трубочкой</label>
+                            <label class="cl-item"><input type="checkbox"> Ведро для рвоты, влажные и сухие салфетки</label>
+                            <label class="cl-item"><input type="checkbox"> Тонометр для измерения давления и пульса</label>
+                            <label class="cl-item"><input type="checkbox"> Согласие на прикосновения (Touch Consent) подписано</label>
+                            <label class="cl-item"><input type="checkbox"> Номер телефона доверенного лица записан</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 6: TELEGRAM HUB ================= -->
+        <section id="tab-telegram-hub" class="tab-content">
+            <div class="section-header">
+                <div>
+                    <h2 data-i18n="tg_hub_title">Центр отправки материалов в Telegram</h2>
+                    <span class="section-sub" data-i18n="tg_hub_sub">Мгновенная отправка PDF-файлов, опросников, памяток и инструкций прямо клиенту в Telegram</span>
+                </div>
+                <div class="tg-config-header">
+                    <button class="btn btn-secondary btn-sm" onclick="openSettingsModal()" data-i18n="btn_cfg_token">⚙️ Настроить токен бота</button>
+                    <button class="btn btn-outline btn-sm" onclick="checkTelegramConnection()" data-i18n="btn_check_conn">🔄 Проверить связь</button>
+                </div>
+            </div>
+
+            <div class="telegram-hub-grid">
+                <!-- Left: Dispatcher Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 data-i18n="form_send_title">Форма отправки клиенту</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Recipient Selection -->
+                        <div class="form-group">
+                            <label data-i18n="lbl_recip">1. Выберите получателя:</label>
+                            <div class="recipient-selector-row">
+                                <select id="tgClientSelect" class="form-control" onchange="onTgClientSelected()">
+                                    <option value="" data-i18n="opt_choose_client">-- Выбрать из базы клиентов --</option>
+                                </select>
+                                <button class="btn btn-outline btn-sm" onclick="loadRecentTgChats()" title="Загрузить недавние диалоги с ботом" data-i18n="btn_recent_chats">
+                                    💬 Недавние чаты
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="lbl_chat_id">Telegram Chat ID получателя:</label>
+                            <input type="text" id="tgChatIdInput" class="form-control" placeholder="123456789">
+                            <small class="text-muted" data-i18n="chat_id_hint">Если клиент написал боту команду /start, его Chat ID появится в «Недавних чатах».</small>
+                        </div>
+
+                        <!-- Material Selection -->
+                        <div class="form-group">
+                            <label data-i18n="lbl_material">2. Выберите материал для отправки:</label>
+                            <select id="tgMaterialSelect" class="form-control" onchange="onTgMaterialSelected()">
+                                <option value="" data-i18n="opt_choose_mat">-- Выберите файл или статью --</option>
+                            </select>
+                        </div>
+
+                        <!-- Caption / Accompanying message -->
+                        <div class="form-group">
+                            <label data-i18n="lbl_caption">3. Сопроводительное сообщение клиенту:</label>
+                            <textarea id="tgCaptionInput" class="form-control" rows="5" placeholder="Текст сообщения..."></textarea>
+                            <div class="caption-templates">
+                                <span class="caption-lbl" data-i18n="caption_quick">Быстрые шаблоны:</span>
+                                <button class="btn-chip" onclick="applyCaptionTemplate('screening')">Анкета скрининга</button>
+                                <button class="btn-chip" onclick="applyCaptionTemplate('checklist')">Чек-лист за 3 дня</button>
+                                <button class="btn-chip" onclick="applyCaptionTemplate('navigation')">Навигация в сессии</button>
+                                <button class="btn-chip" onclick="applyCaptionTemplate('integration')">Послесессионная памятка</button>
+                            </div>
+                        </div>
+
+                        <div class="send-action-row">
+                            <button id="btnSendTelegram" class="btn btn-primary btn-lg" onclick="executeTelegramSend()" data-i18n="btn_send_tg">
+                                🚀 Отправить файл клиенту в Telegram
+                            </button>
+                            <span id="tgSendStatus" class="send-status-indicator"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Recent Chats & Send History -->
+                <div class="tg-side-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 data-i18n="card_started_users">Клиенты, написавшие боту (/start)</h4>
+                            <button class="btn btn-sm btn-link" onclick="loadRecentTgChats()" data-i18n="btn_refresh">Обновить</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="recentChatsList" class="recent-chats-list">
+                                <div class="empty-state text-muted">...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 data-i18n="card_tg_history">История отправки</h4>
+                            <button class="btn btn-sm btn-link" onclick="loadTelegramHistory()" data-i18n="btn_refresh">Обновить</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="tgHistoryList" class="tg-history-list">
+                                <div class="empty-state text-muted">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 7: CLINICAL LIBRARY ================= -->
+        <section id="tab-library" class="tab-content">
+            <div class="section-header">
+                <div>
+                    <h2 data-i18n="lib_title">Клиническая библиотека OSPAT</h2>
+                    <span class="section-sub" data-i18n="lib_sub">Руководства, статьи, протоколы фасилитации и образовательные посты</span>
+                </div>
+            </div>
+
+            <div class="library-layout">
+                <div class="library-sidebar">
+                    <div class="library-menu" id="libraryItemsList">
+                    </div>
+                </div>
+                <div class="library-viewer">
+                    <div class="card library-card">
+                        <div class="card-header">
+                            <h3 id="libraryDocTitle" data-i18n="lib_placeholder">Выберите документ из списка слева</h3>
+                            <div id="libraryDocActions" style="display: none;">
+                                <button class="btn btn-sm btn-outline" id="btnDownloadDoc" data-i18n="btn_download">💾 Скачать</button>
+                                <button class="btn btn-sm btn-primary" id="btnSendDocTg" data-i18n="btn_send_tg_doc">✈️ Отправить в Telegram</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="libraryDocContent" class="markdown-body">
+                                <p class="text-muted" data-i18n="lib_placeholder">Кликните по любому руководству или посту в списке слева для чтения.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    </div> <!-- end .app-layout -->
+
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>⚙️ Настройки Telegram и Проводника</h3>
+                <button class="modal-close" onclick="closeSettingsModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Telegram Bot Token (от @BotFather):</label>
+                    <input type="text" id="settingBotToken" class="form-control" placeholder="123456789:ABCdefGhIJKlmNoPQRstuVWXyz...">
+                    <small class="text-muted">
+                        Как получить: откройте <a href="https://t.me/BotFather" target="_blank" style="color: var(--accent-light);">@BotFather</a> в Telegram, отправьте <code>/newbot</code>, задайте имя и скопируйте полученный HTTP API Token сюда.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>Имя терапевта / проводника:</label>
+                    <input type="text" id="settingTherapistName" class="form-control" placeholder="напр. Д-р Александр">
+                </div>
+                <div class="alert alert-info">
+                    <strong>Инструкция:</strong>
+                    <ol style="margin-left: 18px; margin-top: 6px;">
+                        <li>Клиент открывает вашего бота в Telegram и нажимает <strong>Start</strong>.</li>
+                        <li>Во вкладке «Telegram» вы увидите клиента в списке «Недавние чаты».</li>
+                        <li>Выбираете файл (анкета, чеклист, опросник WCS) и отправляете в 1 клик!</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeSettingsModal()">Отмена</button>
+                <button class="btn btn-primary" onclick="saveSettings()">Сохранить настройки</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Client Modal -->
+    <div id="clientModal" class="modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="clientModalTitle">➕ Новый пациент / клиент</h3>
+                <button class="modal-close" onclick="closeClientModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editClientId" value="">
+                <div class="two-col-form">
+                    <div class="form-group">
+                        <label>ФИО / Имя клиента: *</label>
+                        <input type="text" id="clientNameInput" class="form-control" required placeholder="Иван Иванов">
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон:</label>
+                        <input type="text" id="clientPhoneInput" class="form-control" placeholder="+7 (999) 000-00-00">
+                    </div>
+                </div>
+
+                <div class="two-col-form">
+                    <div class="form-group">
+                        <label>Telegram Username (без @):</label>
+                        <input type="text" id="clientUsernameInput" class="form-control" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label>Telegram Chat ID (число):</label>
+                        <input type="text" id="clientChatIdInput" class="form-control" placeholder="123456789">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Текущая стадия протокола:</label>
+                    <select id="clientStageSelect" class="form-control">
+                        <option value="preparation">1. Подготовка и скрининг</option>
+                        <option value="ready_for_session">2. Готов к сессии (Скрининг пройден)</option>
+                        <option value="session_day">3. Проведение сессии</option>
+                        <option value="integration">4. Интеграция (Окно нейропластичности)</option>
+                        <option value="completed">5. Курс успешно завершен</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Контакты доверенного лица (на случай завершения сессии):</label>
+                    <input type="text" id="clientEmergencyInput" class="form-control" placeholder="+7...">
+                </div>
+
+                <div class="form-group">
+                    <label>Сформулированное намерение (Intention):</label>
+                    <textarea id="clientIntentionInput" class="form-control" rows="2" placeholder="Запрос на погружение..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Медицинские и психиатрические заметки:</label>
+                    <textarea id="clientMedicalInput" class="form-control" rows="2" placeholder="Анамнез, давление, аллергии..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Общие заметки проводника:</label>
+                    <textarea id="clientNotesInput" class="form-control" rows="2" placeholder="Особенности..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeClientModal()">Отмена</button>
+                <button class="btn btn-primary" onclick="saveClientForm()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Event Custom Prompt Modal -->
+    <div id="customEventModal" class="modal-backdrop">
+        <div class="modal-card modal-sm">
+            <div class="modal-header">
+                <h3>Запись наблюдения / цитаты</h3>
+                <button class="modal-close" onclick="closeCustomEventModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Тип события:</label>
+                    <input type="text" id="customEventType" class="form-control" value="Observation">
+                </div>
+                <div class="form-group">
+                    <label>Текст наблюдения (дословно):</label>
+                    <textarea id="customEventNote" class="form-control" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeCustomEventModal()">Отмена</button>
+                <button class="btn btn-primary" onclick="submitCustomEvent()">Записать в лог</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts in proper loading order -->
+    <script src="/static/js/wcs_tool.js"></script>
+    <script src="/static/js/session_timer.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

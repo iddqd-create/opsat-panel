@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Watts Connectedness Scale (WCS) — Опросник связанности</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 12mm 15mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+            font-size: 8.8pt;
+            line-height: 1.35;
+            color: #1a202c;
+            background: #fff;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2b6cb0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 14pt;
+            color: #2b6cb0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .header p {
+            font-size: 8pt;
+            color: #4a5568;
+        }
+
+        .client-info {
+            display: flex;
+            justify-content: space-between;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 8.5pt;
+            margin-bottom: 10px;
+        }
+
+        .scale-legend {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 5px 10px;
+            font-size: 7.8pt;
+            margin-bottom: 10px;
+            color: #2b6cb0;
+        }
+
+        .scale-legend strong {
+            color: #2c5282;
+        }
+
+        .table-section {
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+
+        .section-header {
+            background: #edf2f7;
+            padding: 3px 8px;
+            font-weight: 700;
+            font-size: 9pt;
+            color: #2d3748;
+            border-left: 3px solid #4a5568;
+            margin-bottom: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #cbd5e0;
+            padding: 4px 6px;
+            text-align: left;
+            font-size: 8.3pt;
+        }
+
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+
+        .col-score {
+            width: 70px;
+            text-align: center;
+        }
+
+        .score-box {
+            display: inline-block;
+            width: 32px;
+            height: 16px;
+            border-bottom: 1px solid #718096;
+        }
+
+        .subtotal {
+            text-align: right;
+            font-weight: bold;
+            padding: 4px 8px;
+            font-size: 8.5pt;
+            color: #2d3748;
+            background: #f7fafc;
+        }
+
+        .summary-box {
+            background: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 4px solid #dd6b20;
+            padding: 8px 10px;
+            font-size: 8pt;
+            margin-top: 10px;
+        }
+
+        .summary-box h4 {
+            font-size: 8.8pt;
+            color: #9c4221;
+            margin-bottom: 4px;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Watts Connectedness Scale (WCS)</h1>
+        <p>Шкала связности д-ра Розалинд Уоттс (Imperial College London) — инструмент замера глубинной интеграции</p>
+    </div>
+
+    <div class="client-info">
+        <div><strong>Участник (ФИО):</strong> _________________________________</div>
+        <div><strong>Этап замера:</strong> [&nbsp;&nbsp;] До сессии (Baseline) &nbsp;&nbsp;&nbsp; [&nbsp;&nbsp;] Интеграция (7-14 день)</div>
+        <div><strong>Дата:</strong> ____________</div>
+    </div>
+
+    <div class="scale-legend">
+        <strong>Шкала баллов (0–6):</strong> 
+        0 — Категорически не согласен | 1 — Почти не согласен | 2 — Скорее не согласен | 3 — Нейтрально | 4 — Скорее согласен | 5 — В значительной степени | 6 — Полностью согласен
+    </div>
+
+    <!-- БЛОК 1 -->
+    <div class="table-section">
+        <div class="section-header">Блок I. Связь с собой (Connection to Self)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25px;">№</th>
+                    <th>Утверждение</th>
+                    <th class="col-score">Балл (0–6)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Я нахожусь в ясном контакте со своими истинными чувствами и эмоциями</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>2</td><td>Я хорошо чувствую сигналы своего тела (напряжение, усталость, дыхание, тепло)</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>3</td><td>Я отношусь к себе с искренним состраданием и добротой, даже когда ошибаюсь</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>4</td><td>Я живу своей подлинной жизнью, а не следую навязанным извне ожиданиям</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>5</td><td>Я доверяю своей интуиции и внутреннему голосу при принятии решений</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>6</td><td>Я принимаю свои темные или уязвимые стороны без стыда и самобичевания</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>7</td><td>Внутри меня есть устойчивое чувство собственного достоинства и ценности</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr>
+                    <td colspan="2" class="subtotal">Суммарный балл по Блоку I (макс. 42):</td>
+                    <td class="col-score" style="font-weight: bold;">______</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- БЛОК 2 -->
+    <div class="table-section">
+        <div class="section-header">Блок II. Связь с другими людьми (Connection to Others)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25px;">№</th>
+                    <th>Утверждение</th>
+                    <th class="col-score">Балл (0–6)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>8</td><td>Я чувствую искреннюю душевную теплоту и эмпатию к окружающим людям</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>9</td><td>В моих отношениях с близкими есть пространство для честной уязвимости</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>10</td><td>Я ощущаю себя частью человеческого сообщества, а не одиноким изгоем</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>11</td><td>Мне легко искренне слушать другого человека, не оценивая и не осуждая его</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>12</td><td>Я способен прощать прошлые обиды и отпускать эмоциональный груз</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>13</td><td>Я чувствую, что меня видят, слышат и принимают те, кто мне дорог</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>14</td><td>Я ощущаю доверие к миру людей в целом</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr>
+                    <td colspan="2" class="subtotal">Суммарный балл по Блоку II (макс. 42):</td>
+                    <td class="col-score" style="font-weight: bold;">______</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- БЛОК 3 -->
+    <div class="table-section">
+        <div class="section-header">Блок III. Связь с миром и природой (Connection to Nature & World)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25px;">№</th>
+                    <th>Утверждение</th>
+                    <th class="col-score">Балл (0–6)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>15</td><td>Контакт с природой (лес, небо, вода, земля) наполняет меня силой и покоем</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>16</td><td>Я ощущаю благоговение перед красотой и сложностью жизни вокруг</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>17</td><td>Я чувствую себя неотъемлемой частью планетарной экосистемы и Вселенной</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>18</td><td>Моя жизнь наполнена глубинным смыслом и ориентирами</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>19</td><td>Я ощущаю спокойное принятие естественного течения жизни, перемен и смерти</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>20</td><td>Я замечаю чудеса и тонкости в повседневных вещах</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr><td>21</td><td>Я чувствую гармонию с ритмами окружающего мира</td><td class="col-score"><span class="score-box"></span></td></tr>
+                <tr>
+                    <td colspan="2" class="subtotal">Суммарный балл по Блоку III (макс. 42):</td>
+                    <td class="col-score" style="font-weight: bold;">______</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="summary-box">
+        <h4>Итоговая интерпретация общего балла связности (макс. 126 баллов): ______________</h4>
+        <p><strong>0–45:</strong> Выраженное отчуждение (Disconnection) | <strong>46–85:</strong> Умеренная связность | <strong>86–126:</strong> Высокая связность и устойчивая интеграция.</p>
+    </div>
+
+</body>
+</html>
