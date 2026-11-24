@@ -287,7 +287,7 @@ async function saveWcsAssessment() {
         });
         const data = await res.json();
         if (data.status === 'ok') {
-            const successMsg = window.currentLang === 'en' ? `✅ WCS Assessment saved!\nTotal Score: ${total} / 126` : window.currentLang === 'bg' ? `✅ Замерването по WCS е запазено успешно!\nОбщ резултат: ${total} / 126` : `✅ Замер шкалы WCS успешно сохранен!\nОбщий балл: ${total} / 126`;
+            const successMsg = window.currentLang === 'en' ? `WCS Assessment saved!\nTotal Score: ${total} / 126` : window.currentLang === 'bg' ? `Замерването по WCS е запазено успешно!\nОбщ резултат: ${total} / 126` : `Замер шкалы WCS успешно сохранен!\nОбщий балл: ${total} / 126`;
             alert(successMsg);
             if (window.selectedClientId == clientId && typeof window.loadClientDossier === 'function') {
                 window.loadClientDossier(clientId);

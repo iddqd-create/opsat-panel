@@ -10,10 +10,12 @@ let materialsCatalog = [];
 let currentViewingMaterial = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) window.lucide.createIcons();
     initApp();
 });
 
 async function initApp() {
+    initTheme();
     initTabs();
     initLanguageSwitcher();
     await checkTelegramConnection();
@@ -27,6 +29,44 @@ async function initApp() {
     const savedLang = localStorage.getItem('ospat_lang') || 'ru';
     setLanguage(savedLang);
 }
+
+// ---------------- THEME SWITCHER ----------------
+
+function initTheme() {
+    const savedTheme = localStorage.getItem('ospat_theme') || 'light';
+    setTheme(savedTheme);
+}
+
+function setTheme(theme) {
+    const normalized = theme === 'dark' ? 'dark' : 'light';
+    if (normalized === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+    localStorage.setItem('ospat_theme', normalized);
+    updateThemeToggleUI();
+}
+
+function toggleTheme() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    setTheme(isDark ? 'light' : 'dark');
+}
+
+function updateThemeToggleUI() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const btn = document.getElementById('themeToggleBtn');
+    if (!btn) return;
+    const iconName = isDark ? 'sun' : 'moon';
+    const labelKey = isDark ? 'theme_light' : 'theme_dark';
+    const fallback = isDark ? 'Светлая тема' : 'Тёмная тема';
+    btn.innerHTML = `<i data-lucide="${iconName}" id="themeToggleIcon"></i> <span id="themeToggleLabel" data-i18n="${labelKey}">${window.t ? window.t(labelKey, fallback) : fallback}</span>`;
+    if (window.lucide) window.lucide.createIcons();
+}
+
+window.toggleTheme = toggleTheme;
+window.setTheme = setTheme;
+window.updateThemeToggleUI = updateThemeToggleUI;
 
 // ---------------- LANGUAGE SWITCHER ----------------
 
@@ -160,7 +200,7 @@ async function saveSettings() {
 
         closeSettingsModal();
         await checkTelegramConnection();
-        const successMsg = window.currentLang === 'en' ? '✅ Settings saved successfully!' : window.currentLang === 'bg' ? '✅ Настройките са запазени успешно!' : '✅ Настройки успешно сохранены!';
+        const successMsg = window.currentLang === 'en' ? 'Settings saved successfully!' : window.currentLang === 'bg' ? 'Настройките са запазени успешно!' : 'Настройки успешно сохранены!';
         alert(successMsg);
     } catch (e) {
         alert('Error: ' + e.message);
@@ -373,7 +413,8 @@ function switchDossierTab(tab, evt) {
 
 function openNewClientModal() {
     document.getElementById('editClientId').value = '';
-    document.getElementById('clientModalTitle').innerText = window.t('btn_add_client');
+    document.getElementById('clientModalTitle').innerHTML = `<i data-lucide="user-plus"></i> <span>${window.t('btn_add_client')}</span>`;
+    if (window.lucide) window.lucide.createIcons();
     document.getElementById('clientNameInput').value = '';
     document.getElementById('clientPhoneInput').value = '';
     document.getElementById('clientUsernameInput').value = '';
@@ -392,7 +433,8 @@ function openEditClientModal() {
     if (!c) return;
 
     document.getElementById('editClientId').value = c.id;
-    document.getElementById('clientModalTitle').innerText = window.t('btn_edit');
+    document.getElementById('clientModalTitle').innerHTML = `<i data-lucide="pencil"></i> <span>${window.t('btn_edit')}</span>`;
+    if (window.lucide) window.lucide.createIcons();
     document.getElementById('clientNameInput').value = c.name || '';
     document.getElementById('clientPhoneInput').value = c.phone || '';
     document.getElementById('clientUsernameInput').value = c.telegram_username || '';
@@ -657,8 +699,9 @@ async function executeTelegramSend() {
         return;
     }
 
-    const sendingMsg = window.currentLang === 'en' ? '⏳ Sending via Telegram...' : window.currentLang === 'bg' ? '⏳ Изпращане в Telegram...' : '⏳ Отправка в Telegram...';
-    statusEl.innerHTML = `<span style="color: var(--accent-light);">${sendingMsg}</span>`;
+    const sendingMsg = window.currentLang === 'en' ? 'Sending via Telegram...' : window.currentLang === 'bg' ? 'Изпращане в Telegram...' : 'Отправка в Telegram...';
+    statusEl.innerHTML = `<span style="color: var(--accent-light);"><i data-lucide="loader-2" class="inline-icon"></i>${sendingMsg}</span>`;
+    if (window.lucide) window.lucide.createIcons();
 
     try {
         const res = await fetch('/api/telegram/send', {
@@ -676,15 +719,18 @@ async function executeTelegramSend() {
 
         const data = await res.json();
         if (res.ok && data.status === 'ok') {
-            const successMsg = window.currentLang === 'en' ? '✅ Successfully delivered!' : window.currentLang === 'bg' ? '✅ Успешно изпратено!' : '✅ Успешно отправлено!';
-            statusEl.innerHTML = `<span style="color: var(--color-success);">${successMsg}</span>`;
+            const successMsg = window.currentLang === 'en' ? 'Successfully delivered!' : window.currentLang === 'bg' ? 'Успешно изпратено!' : 'Успешно отправлено!';
+            statusEl.innerHTML = `<span style="color: var(--color-success);"><i data-lucide="check-circle-2" class="inline-icon"></i>${successMsg}</span>`;
+            if (window.lucide) window.lucide.createIcons();
             loadTelegramHistory();
             setTimeout(() => { statusEl.innerHTML = ''; }, 4000);
         } else {
-            statusEl.innerHTML = `<span style="color: var(--color-danger);">❌ ${data.detail || 'Send failed'}</span>`;
+            statusEl.innerHTML = `<span style="color: var(--color-danger);"><i data-lucide="x-circle" class="inline-icon"></i>${data.detail || 'Send failed'}</span>`;
+            if (window.lucide) window.lucide.createIcons();
         }
     } catch (e) {
-        statusEl.innerHTML = `<span style="color: var(--color-danger);">❌ ${e.message}</span>`;
+        statusEl.innerHTML = `<span style="color: var(--color-danger);"><i data-lucide="x-circle" class="inline-icon"></i>${e.message}</span>`;
+        if (window.lucide) window.lucide.createIcons();
     }
 }
 
@@ -748,10 +794,11 @@ function renderLibraryMenu() {
     container.innerHTML = materialsCatalog.map(m => `
         <button class="library-item-btn ${currentViewingMaterial?.id === m.id ? 'active' : ''}" 
                 onclick="viewMaterial('${m.id}')">
-            <span>${m.type === 'pdf' ? '📄' : m.type === 'post' ? '📝' : '📖'}</span>
+            <i data-lucide="${m.type === 'pdf' ? 'file-text' : m.type === 'post' ? 'file-edit' : 'book-open'}"></i>
             <span>${m.display_title || m.title}</span>
         </button>
     `).join('');
+    if (window.lucide) window.lucide.createIcons();
 }
 
 async function viewMaterial(materialId) {
@@ -776,8 +823,8 @@ async function viewMaterial(materialId) {
 
     if (mat.type === 'pdf') {
         const descText = window.currentLang === 'en' ? 'Clinical PDF Document ready for printing or direct delivery via Telegram.' : window.currentLang === 'bg' ? 'Клиничен PDF документ за печат или директно изпращане в Telegram.' : 'PDF документ готов для печати или отправки клиенту в Telegram.';
-        const dlBtn = window.currentLang === 'en' ? '📥 Download PDF' : window.currentLang === 'bg' ? '📥 Изтегли PDF' : '📥 Открыть / Скачать PDF';
-        const tgBtn = window.currentLang === 'en' ? '✈️ Send via Telegram' : window.currentLang === 'bg' ? '✈️ Изпрати в Telegram' : '✈️ Отправить клиенту через Telegram';
+        const dlBtn = window.currentLang === 'en' ? 'Download PDF' : window.currentLang === 'bg' ? 'Изтегли PDF' : 'Открыть / Скачать PDF';
+        const tgBtn = window.currentLang === 'en' ? 'Send via Telegram' : window.currentLang === 'bg' ? 'Изпрати в Telegram' : 'Отправить клиенту через Telegram';
 
         contentEl.innerHTML = `
             <div class="alert alert-info">
@@ -785,10 +832,11 @@ async function viewMaterial(materialId) {
             </div>
             <p>${descText}</p>
             <div style="margin-top: 20px; display: flex; gap: 12px;">
-                <a href="/api/materials/${mat.id}/download" class="btn btn-primary" target="_blank">${dlBtn}</a>
-                <button class="btn btn-secondary" onclick="quickSend('${mat.id}')">${tgBtn}</button>
+                <a href="/api/materials/${mat.id}/download" class="btn btn-primary" target="_blank"><i data-lucide="download"></i> ${dlBtn}</a>
+                <button class="btn btn-secondary" onclick="quickSend('${mat.id}')"><i data-lucide="send"></i> ${tgBtn}</button>
             </div>
         `;
+        if (window.lucide) window.lucide.createIcons();
     } else {
         try {
             const lang = window.currentLang || 'ru';

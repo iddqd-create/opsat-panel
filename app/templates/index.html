@@ -8,9 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css?v=3">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('ospat_theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <!-- i18n Dictionary -->
-    <script src="/static/js/i18n.js"></script>
+    <script src="/static/js/i18n.js?v=3"></script>
+    <!-- Lucide SVG Icons (Local) -->
+    <script src="/static/js/lucide.min.js?v=2"></script>
 </head>
 <body>
     <!-- Main Application Layout (Sidebar on Left, Content on Right) -->
@@ -19,7 +29,7 @@
         <aside class="app-sidebar" id="appSidebar">
             <div class="sidebar-brand">
                 <div class="app-logo" onclick="switchTab('dashboard')" title="OSPAT Dashboard">
-                    <span class="logo-circle">🍄</span>
+                    <span class="logo-circle"><i data-lucide="sprout"></i></span>
                     <div class="logo-text">
                         <span class="brand-title">OSPAT</span>
                         <span class="brand-subtitle" data-i18n="brand_subtitle">Клинический пульт</span>
@@ -30,25 +40,25 @@
             <!-- Vertical Navigation Menu -->
             <nav class="nav-tabs sidebar-nav">
                 <button class="nav-tab active" data-tab="dashboard">
-                    <span class="tab-icon">📊</span> <span class="tab-label" data-i18n="tab_dashboard">Главная</span>
+                    <span class="tab-icon"><i data-lucide="layout-dashboard"></i></span> <span class="tab-label" data-i18n="tab_dashboard">Главная</span>
                 </button>
                 <button class="nav-tab" data-tab="protocol">
-                    <span class="tab-icon">🧭</span> <span class="tab-label" data-i18n="tab_protocol">Протокол терапии</span>
+                    <span class="tab-icon"><i data-lucide="compass"></i></span> <span class="tab-label" data-i18n="tab_protocol">Протокол терапии</span>
                 </button>
                 <button class="nav-tab" data-tab="session-pilot">
-                    <span class="tab-icon">⏱️</span> <span class="tab-label" data-i18n="tab_session_pilot">Сессионный пульт</span>
+                    <span class="tab-icon"><i data-lucide="timer"></i></span> <span class="tab-label" data-i18n="tab_session_pilot">Сессионный пульт</span>
                 </button>
                 <button class="nav-tab" data-tab="clients">
-                    <span class="tab-icon">👥</span> <span class="tab-label" data-i18n="tab_clients">Клиенты</span>
+                    <span class="tab-icon"><i data-lucide="users"></i></span> <span class="tab-label" data-i18n="tab_clients">Клиенты</span>
                 </button>
                 <button class="nav-tab" data-tab="tools">
-                    <span class="tab-icon">📐</span> <span class="tab-label" data-i18n="tab_tools">Инструменты (WCS)</span>
+                    <span class="tab-icon"><i data-lucide="sliders-horizontal"></i></span> <span class="tab-label" data-i18n="tab_tools">Инструменты (WCS)</span>
                 </button>
                 <button class="nav-tab" data-tab="telegram-hub">
-                    <span class="tab-icon">✈️</span> <span class="tab-label" data-i18n="tab_telegram_hub">Отправка в TG</span>
+                    <span class="tab-icon"><i data-lucide="send"></i></span> <span class="tab-label" data-i18n="tab_telegram_hub">Отправка в TG</span>
                 </button>
                 <button class="nav-tab" data-tab="library">
-                    <span class="tab-icon">📚</span> <span class="tab-label" data-i18n="tab_library">База знаний</span>
+                    <span class="tab-icon"><i data-lucide="book-open"></i></span> <span class="tab-label" data-i18n="tab_library">База знаний</span>
                 </button>
             </nav>
 
@@ -62,13 +72,22 @@
 
                 <!-- Language Switcher -->
                 <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
-                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-                    <button class="lang-btn" data-lang="bg">🇧🇬 BG</button>
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="bg">BG</button>
                 </div>
 
+                <!-- Theme Switcher Button -->
+                <button class="btn btn-secondary btn-sm sidebar-settings-btn" id="themeToggleBtn" onclick="toggleTheme()">
+                    <i data-lucide="moon" id="themeToggleIcon"></i>
+                    <span id="themeToggleLabel" data-i18n="theme_dark">Тёмная тема</span>
+                </button>
+
                 <!-- Settings Button -->
-                <button class="btn btn-secondary btn-sm sidebar-settings-btn" onclick="openSettingsModal()" data-i18n="btn_settings">⚙️ Настройки</button>
+                <button class="btn btn-secondary btn-sm sidebar-settings-btn" onclick="openSettingsModal()">
+                    <i data-lucide="settings"></i>
+                    <span data-i18n="btn_settings">Настройки</span>
+                </button>
             </div>
         </aside>
 
@@ -83,14 +102,17 @@
                     <h1 class="hero-title" data-i18n="hero_title">Протокол сопровождения сессий</h1>
                     <p class="hero-desc" data-i18n="hero_desc">Безопасное, доказательное и этичное проведение псилоцибин-ассистированной терапии по клиническим стандартам MAPS, Imperial College London и Johns Hopkins.</p>
                     <div class="hero-actions">
-                        <button class="btn btn-primary btn-lg" onclick="switchTab('session-pilot')" data-i18n="hero_btn_pilot">
-                            ▶️ Запустить пульт сессии
+                        <button class="btn btn-primary btn-lg" onclick="switchTab('session-pilot')">
+                            <i data-lucide="play"></i>
+                            <span data-i18n="hero_btn_pilot">Запустить пульт сессии</span>
                         </button>
-                        <button class="btn btn-outline btn-lg" onclick="switchTab('protocol')" data-i18n="hero_btn_protocol">
-                            🧭 Открыть пошаговый протокол
+                        <button class="btn btn-outline btn-lg" onclick="switchTab('protocol')">
+                            <i data-lucide="compass"></i>
+                            <span data-i18n="hero_btn_protocol">Открыть пошаговый протокол</span>
                         </button>
-                        <button class="btn btn-secondary btn-lg" onclick="openNewClientModal()" data-i18n="hero_btn_client">
-                            ➕ Новый клиент
+                        <button class="btn btn-secondary btn-lg" onclick="openNewClientModal()">
+                            <i data-lucide="user-plus"></i>
+                            <span data-i18n="hero_btn_client">Новый клиент</span>
                         </button>
                     </div>
                 </div>
@@ -123,7 +145,7 @@
                         <p data-i18n="phase1_desc">2–3 встречи по 60–90 мин. Верификация противопоказаний, снятие невротических ожиданий (unpriming), формулирование намерения, протокол Touch Consent.</p>
                         <div class="phase-meta">
                             <span class="badge badge-prep" data-i18n="phase1_meta">1-2 недели до сессии</span>
-                            <button class="btn-link" onclick="event.stopPropagation(); quickSend('screening_pdf')" data-i18n="phase1_btn">Отправить анкету ✈️</button>
+                            <button class="btn-link" onclick="event.stopPropagation(); quickSend('screening_pdf')"><span data-i18n="phase1_btn">Отправить анкету</span> <i data-lucide="send"></i></button>
                         </div>
                     </div>
 
@@ -133,7 +155,7 @@
                         <p data-i18n="phase2_desc">5–8 часов глубокого погружения. Недирективное удержание пространства (95% тишины), музыкальная архитектура волны, протоколы кризисной помощи.</p>
                         <div class="phase-meta">
                             <span class="badge badge-session" data-i18n="phase2_meta">День погружения</span>
-                            <button class="btn-link" onclick="event.stopPropagation(); switchTab('session-pilot')" data-i18n="phase2_btn">Пульт сессии ⏱️</button>
+                            <button class="btn-link" onclick="event.stopPropagation(); switchTab('session-pilot')"><span data-i18n="phase2_btn">Пульт сессии</span> <i data-lucide="timer"></i></button>
                         </div>
                     </div>
 
@@ -143,7 +165,7 @@
                         <p data-i18n="phase3_desc">Окно гиперпластичности (14–28 дней). Встречи на 24-48ч, 7-10 день и 3-4 неделю. 4 уровня интеграции (Тело, Эмоции, Смыслы, Действия), мораторий 30 дней.</p>
                         <div class="phase-meta">
                             <span class="badge badge-integ" data-i18n="phase3_meta">2-4 недели после</span>
-                            <button class="btn-link" onclick="event.stopPropagation(); quickSend('wcs_pdf')" data-i18n="phase3_btn">Отправить WCS ✈️</button>
+                            <button class="btn-link" onclick="event.stopPropagation(); quickSend('wcs_pdf')"><span data-i18n="phase3_btn">Отправить WCS</span> <i data-lucide="send"></i></button>
                         </div>
                     </div>
                 </div>
@@ -171,36 +193,36 @@
                     <div class="card-body">
                         <div class="quick-send-grid">
                             <div class="quick-send-item" onclick="quickSend('screening_pdf')">
-                                <span class="qs-icon">📄</span>
+                                <span class="qs-icon"><i data-lucide="file-text"></i></span>
                                 <div class="qs-info">
                                     <strong>Анкета скрининга (PDF)</strong>
                                     <small>Скрининг рисков и соматики</small>
                                 </div>
-                                <span class="qs-arrow">✈️</span>
+                                <span class="qs-arrow"><i data-lucide="send"></i></span>
                             </div>
                             <div class="quick-send-item" onclick="quickSend('checklist_pdf')">
-                                <span class="qs-icon">📋</span>
+                                <span class="qs-icon"><i data-lucide="clipboard-check"></i></span>
                                 <div class="qs-info">
                                     <strong>Чек-лист готовности (PDF)</strong>
                                     <small>Диета, сон, одежда, доверенное лицо</small>
                                 </div>
-                                <span class="qs-arrow">✈️</span>
+                                <span class="qs-arrow"><i data-lucide="send"></i></span>
                             </div>
                             <div class="quick-send-item" onclick="quickSend('wcs_pdf')">
-                                <span class="qs-icon">📊</span>
+                                <span class="qs-icon"><i data-lucide="bar-chart-3"></i></span>
                                 <div class="qs-info">
                                     <strong>Шкала Розалинд Уоттс WCS (PDF)</strong>
                                     <small>Замер связанности (до / после)</small>
                                 </div>
-                                <span class="qs-arrow">✈️</span>
+                                <span class="qs-arrow"><i data-lucide="send"></i></span>
                             </div>
                             <div class="quick-send-item" onclick="quickSend('post_01_difficult')">
-                                <span class="qs-icon">🌪️</span>
+                                <span class="qs-icon"><i data-lucide="wind"></i></span>
                                 <div class="qs-info">
                                     <strong>Памятка: Сложнейший опыт</strong>
                                     <small>Техника "In and Through" (Dive in)</small>
                                 </div>
-                                <span class="qs-arrow">✈️</span>
+                                <span class="qs-arrow"><i data-lucide="send"></i></span>
                             </div>
                         </div>
                     </div>
@@ -229,7 +251,7 @@
                     <div class="step-card-header">
                         <span class="step-badge">ШАГ 1.1</span>
                         <h3 data-i18n="step11_title">Медицинский и психиатрический фильтр (Скрининг)</h3>
-                        <button class="btn btn-outline btn-sm" onclick="quickSend('screening_pdf')" data-i18n="step11_btn">Отправить анкету скрининга в Telegram ✈️</button>
+                        <button class="btn btn-outline btn-sm" onclick="quickSend('screening_pdf')"><span data-i18n="step11_btn">Отправить анкету скрининга в Telegram</span> <i data-lucide="send"></i></button>
                     </div>
                     <div class="step-card-body">
                         <div class="alert alert-warning">
@@ -280,7 +302,7 @@
                     <div class="step-card-header">
                         <span class="step-badge">ШАГ 1.3</span>
                         <h3 data-i18n="step13_title">Психообразование и Инструктаж («Trust, Let Go, Be Open»)</h3>
-                        <button class="btn btn-outline btn-sm" onclick="quickSend('post_02_framing')" data-i18n="step13_btn">Отправить памятку в TG ✈️</button>
+                        <button class="btn btn-outline btn-sm" onclick="quickSend('post_02_framing')"><span data-i18n="step13_btn">Отправить памятку в TG</span> <i data-lucide="send"></i></button>
                     </div>
                     <div class="step-card-body">
                         <div class="three-pillars">
@@ -327,7 +349,7 @@
                     <div class="step-card-header">
                         <span class="step-badge">ФАЗОВАЯ КРИВАЯ</span>
                         <h3 data-i18n="phase_curve_title">Анатомия сессионного дня (5–8 часов)</h3>
-                        <button class="btn btn-primary btn-sm" onclick="switchTab('session-pilot')" data-i18n="phase_curve_btn">Перейти в пульт сессии ⏱️</button>
+                        <button class="btn btn-primary btn-sm" onclick="switchTab('session-pilot')"><span data-i18n="phase_curve_btn">Перейти в пульт сессии</span> <i data-lucide="timer"></i></button>
                     </div>
                     <div class="step-card-body">
                         <div class="timeline-visual">
@@ -366,7 +388,7 @@
                     <div class="step-card-header">
                         <span class="step-badge">ФАЗА 03</span>
                         <h3 data-i18n="integ_title">Окно нейропластичности и 4 Уровня интеграции</h3>
-                        <button class="btn btn-outline btn-sm" onclick="quickSend('wcs_pdf')" data-i18n="integ_wcs_btn">Отправить опросник WCS в Telegram ✈️</button>
+                        <button class="btn btn-outline btn-sm" onclick="quickSend('wcs_pdf')"><span data-i18n="integ_wcs_btn">Отправить опросник WCS в Telegram</span> <i data-lucide="send"></i></button>
                     </div>
                     <div class="step-card-body">
                         <div class="alert alert-info">
@@ -397,7 +419,7 @@
                         </div>
 
                         <div class="moratorium-card">
-                            <h4 data-i18n="moratorium_title">🛑 Золотое правило «Моратория 30 дней»:</h4>
+                            <h4><i data-lucide="shield-alert"></i> <span data-i18n="moratorium_title">Золотое правило «Моратория 30 дней»:</span></h4>
                             <p data-i18n="moratorium_desc"><strong>Категорически запрещено принимать необратимые решения в первые недели:</strong> разводиться, бросать работу, продавать недвижимость, уезжать в ашрам или публично исповедоваться в соцсетях. Любому инсайту необходимо время остыть.</p>
                         </div>
                     </div>
@@ -456,14 +478,17 @@
 
                         <!-- Timer Controls -->
                         <div class="timer-controls">
-                            <button id="btnStartSession" class="btn btn-primary btn-lg" onclick="startOrResumeSession()" data-i18n="btn_start_session">
-                                ▶️ Запустить сессию
+                            <button id="btnStartSession" class="btn btn-primary btn-lg" onclick="startOrResumeSession()">
+                                <i data-lucide="play"></i>
+                                <span data-i18n="btn_start_session">Запустить сессию</span>
                             </button>
-                            <button id="btnPauseSession" class="btn btn-secondary btn-lg" onclick="pauseSession()" disabled data-i18n="btn_pause_session">
-                                ⏸️ Пауза
+                            <button id="btnPauseSession" class="btn btn-secondary btn-lg" onclick="pauseSession()" disabled>
+                                <i data-lucide="pause"></i>
+                                <span data-i18n="btn_pause_session">Пауза</span>
                             </button>
-                            <button id="btnEndSession" class="btn btn-danger btn-lg" onclick="finishSession()" disabled data-i18n="btn_end_session">
-                                ⏹️ Завершить сессию
+                            <button id="btnEndSession" class="btn btn-danger btn-lg" onclick="finishSession()" disabled>
+                                <i data-lucide="square"></i>
+                                <span data-i18n="btn_end_session">Завершить сессию</span>
                             </button>
                         </div>
                     </div>
@@ -475,29 +500,37 @@
                             <span class="text-muted" data-i18n="event_logger_sub">Фиксация ключевых реакций в 1 клик с временной меткой</span>
                         </div>
                         <div class="quick-event-buttons">
-                            <button class="event-btn" onclick="quickLogEvent('Dose Administered', 'Client took agreed dose. Process started.')" data-i18n="ev_dose">
-                                💊 Принятие дозы
+                            <button class="event-btn" onclick="quickLogEvent('Dose Administered', 'Client took agreed dose. Process started.')">
+                                <i data-lucide="pill"></i>
+                                <span data-i18n="ev_dose">Принятие дозы</span>
                             </button>
-                            <button class="event-btn" onclick="quickLogEvent('Nausea / Somatic Discomfort', 'Nausea report. Basin provided, calm breathing.')" data-i18n="ev_nausea">
-                                🤢 Тошнота / Дискомфорт
+                            <button class="event-btn" onclick="quickLogEvent('Nausea / Somatic Discomfort', 'Nausea report. Basin provided, calm breathing.')">
+                                <i data-lucide="frown"></i>
+                                <span data-i18n="ev_nausea">Тошнота / Дискомфорт</span>
                             </button>
-                            <button class="event-btn" onclick="quickLogEvent('Catharsis / Tears', 'Deep emotional release, tears. Silent holding space.')" data-i18n="ev_tears">
-                                💧 Слезы / Катарсис
+                            <button class="event-btn" onclick="quickLogEvent('Catharsis / Tears', 'Deep emotional release, tears. Silent holding space.')">
+                                <i data-lucide="droplet"></i>
+                                <span data-i18n="ev_tears">Слезы / Катарсис</span>
                             </button>
-                            <button class="event-btn" onclick="quickLogEvent('Vegetative Tremor', 'Limb shaking/tremor. Body releasing trauma energy.')" data-i18n="ev_tremor">
-                                ⚡ Тремор / Разрядка
+                            <button class="event-btn" onclick="quickLogEvent('Vegetative Tremor', 'Limb shaking/tremor. Body releasing trauma energy.')">
+                                <i data-lucide="zap"></i>
+                                <span data-i18n="ev_tremor">Тремор / Разрядка</span>
                             </button>
-                            <button class="event-btn" onclick="quickLogEvent('Touch Grounding', 'Client requested hand support. Touch consent applied.')" data-i18n="ev_touch">
-                                🤝 Тактильный контакт
+                            <button class="event-btn" onclick="quickLogEvent('Touch Grounding', 'Client requested hand support. Touch consent applied.')">
+                                <i data-lucide="heart-handshake"></i>
+                                <span data-i18n="ev_touch">Тактильный контакт</span>
                             </button>
-                            <button class="event-btn" onclick="quickLogEvent('Removed Mask', 'Client opened eyes. Gentle cue to return inside.')" data-i18n="ev_mask">
-                                👁️ Снял маску
+                            <button class="event-btn" onclick="quickLogEvent('Removed Mask', 'Client opened eyes. Gentle cue to return inside.')">
+                                <i data-lucide="eye"></i>
+                                <span data-i18n="ev_mask">Снял маску</span>
                             </button>
-                            <button class="event-btn" onclick="quickLogEvent('Vitals Check', 'Blood pressure and pulse checked and stable.')" data-i18n="ev_vitals">
-                                🩺 Замер пульса/АД
+                            <button class="event-btn" onclick="quickLogEvent('Vitals Check', 'Blood pressure and pulse checked and stable.')">
+                                <i data-lucide="stethoscope"></i>
+                                <span data-i18n="ev_vitals">Замер пульса/АД</span>
                             </button>
-                            <button class="event-btn" onclick="promptCustomEvent()" data-i18n="ev_custom">
-                                ✍️ Записать цитату / наблюдение...
+                            <button class="event-btn" onclick="promptCustomEvent()">
+                                <i data-lucide="pen-line"></i>
+                                <span data-i18n="ev_custom">Записать цитату / наблюдение...</span>
                             </button>
                         </div>
 
@@ -527,14 +560,14 @@
                     <!-- Crisis Intervention Cards -->
                     <div class="crisis-card">
                         <div class="crisis-header">
-                            <span class="crisis-icon">🚨</span>
+                            <span class="crisis-icon"><i data-lucide="siren"></i></span>
                             <h4 data-i18n="crisis_title">Кризисная шпаргалка (1-клик помощь)</h4>
                         </div>
                         <div class="crisis-accordion">
                             <div class="crisis-item" onclick="toggleCrisisItem(this)">
                                 <div class="crisis-title">
-                                    <span data-i18n="crisis_1_title">🌀 Паническая петля («Я схожу с ума»)</span>
-                                    <span class="chevron">▼</span>
+                                    <span class="crisis-title-label"><i data-lucide="wind"></i> <span data-i18n="crisis_1_title">Паническая петля («Я схожу с ума»)</span></span>
+                                    <span class="chevron"><i data-lucide="chevron-down"></i></span>
                                 </div>
                                 <div class="crisis-body">
                                     <div class="script-quote" data-i18n="crisis_1_script">
@@ -546,8 +579,8 @@
 
                             <div class="crisis-item" onclick="toggleCrisisItem(this)">
                                 <div class="crisis-title">
-                                    <span data-i18n="crisis_2_title">💀 Страх смерти Эго («Я умираю»)</span>
-                                    <span class="chevron">▼</span>
+                                    <span class="crisis-title-label"><i data-lucide="flame"></i> <span data-i18n="crisis_2_title">Страх смерти Эго («Я умираю»)</span></span>
+                                    <span class="chevron"><i data-lucide="chevron-down"></i></span>
                                 </div>
                                 <div class="crisis-body">
                                     <div class="script-quote" data-i18n="crisis_2_script">
@@ -558,8 +591,8 @@
 
                             <div class="crisis-item" onclick="toggleCrisisItem(this)">
                                 <div class="crisis-title">
-                                    <span data-i18n="crisis_3_title">🤢 Тошнота и соматическая боль</span>
-                                    <span class="chevron">▼</span>
+                                    <span class="crisis-title-label"><i data-lucide="heart-pulse"></i> <span data-i18n="crisis_3_title">Тошнота и соматическая боль</span></span>
+                                    <span class="chevron"><i data-lucide="chevron-down"></i></span>
                                 </div>
                                 <div class="crisis-body">
                                     <p data-i18n="crisis_3_desc">Не блокировать рвоту противорвотными (если нет патологии). Поднести ведро, придержать спину. Тошнота — психосоматическое очищение от токсичных обид. После: чистая вода, протереть лицо.</p>
@@ -598,14 +631,15 @@
                     <h2 data-i18n="crm_title">База пациентов / клиентов</h2>
                     <span class="section-sub" data-i18n="crm_sub">Управление стадиями протокола, историей сессий, замерами WCS и контактами Telegram</span>
                 </div>
-                <button class="btn btn-primary" onclick="openNewClientModal()" data-i18n="btn_add_client">➕ Добавить клиента</button>
+                <button class="btn btn-primary" onclick="openNewClientModal()"><i data-lucide="user-plus"></i> <span data-i18n="btn_add_client">Добавить клиента</span></button>
             </div>
 
             <div class="clients-layout">
                 <!-- Clients List Column -->
                 <div class="clients-list-card">
                     <div class="search-box">
-                        <input type="text" id="clientSearchInput" class="form-control" data-i18n-placeholder="crm_search_placeholder" placeholder="🔍 Поиск по имени или телефону..." oninput="filterClients()">
+                        <i data-lucide="search" class="search-icon"></i>
+                        <input type="text" id="clientSearchInput" class="form-control" data-i18n-placeholder="crm_search_placeholder" placeholder="Поиск по имени или телефону..." oninput="filterClients()">
                     </div>
                     <div id="clientsCardsContainer" class="client-cards-list">
                     </div>
@@ -614,7 +648,7 @@
                 <!-- Client Detail Dossier -->
                 <div class="client-dossier-card" id="clientDossierCard">
                     <div class="empty-state" id="clientDossierEmpty">
-                        <span class="empty-icon">👤</span>
+                        <span class="empty-icon"><i data-lucide="user"></i></span>
                         <h3 data-i18n="dossier_empty_title">Выберите клиента из списка</h3>
                         <p data-i18n="dossier_empty_desc">Здесь отобразится полная клиническая карта, стадия протокола, результаты тестирования WCS и логи сессий.</p>
                     </div>
@@ -630,9 +664,9 @@
                                 </div>
                             </div>
                             <div class="dossier-actions">
-                                <button class="btn btn-sm btn-outline" onclick="openEditClientModal()" data-i18n="btn_edit">✏️ Редактировать</button>
-                                <button class="btn btn-sm btn-primary" onclick="quickSendForCurrentClient()" data-i18n="btn_send_tg_client">✈️ Отправить файл в TG</button>
-                                <button class="btn btn-sm btn-danger" onclick="deleteCurrentClient()">🗑️</button>
+                                <button class="btn btn-sm btn-outline" onclick="openEditClientModal()"><i data-lucide="pencil"></i> <span data-i18n="btn_edit">Редактировать</span></button>
+                                <button class="btn btn-sm btn-primary" onclick="quickSendForCurrentClient()"><i data-lucide="send"></i> <span data-i18n="btn_send_tg_client">Отправить файл в TG</span></button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteCurrentClient()" title="Удалить клиента"><i data-lucide="trash-2"></i></button>
                             </div>
                         </div>
 
@@ -675,7 +709,7 @@
                         <div id="dossier-view-wcs" class="dossier-section">
                             <div class="wcs-comparison-header">
                                 <h4 data-i18n="wcs_dyn_title">Динамика связанности (Watts Connectedness Scale)</h4>
-                                <button class="btn btn-sm btn-outline" onclick="openWcsForClient()" data-i18n="btn_take_wcs">➕ Провести замер WCS</button>
+                                <button class="btn btn-sm btn-outline" onclick="openWcsForClient()"><i data-lucide="plus"></i> <span data-i18n="btn_take_wcs">Провести замер WCS</span></button>
                             </div>
                             <div id="dossierWcsContainer">
                             </div>
@@ -694,8 +728,8 @@
                     <span class="section-sub" data-i18n="tools_sub">Шкала связности Розалинд Уоттс (WCS) и Интерактивный чек-лист готовности</span>
                 </div>
                 <div class="tool-switch-btns">
-                    <button class="btn btn-secondary active" onclick="switchToolSub('wcs')" data-i18n="btn_tool_wcs">📊 Шкала WCS (21 вопрос)</button>
-                    <button class="btn btn-secondary" onclick="switchToolSub('checklist')" data-i18n="btn_tool_cl">📋 Чек-лист готовности</button>
+                    <button class="btn btn-secondary active" onclick="switchToolSub('wcs')"><i data-lucide="bar-chart-3"></i> <span data-i18n="btn_tool_wcs">Шкала WCS (21 вопрос)</span></button>
+                    <button class="btn btn-secondary" onclick="switchToolSub('checklist')"><i data-lucide="clipboard-check"></i> <span data-i18n="btn_tool_cl">Чек-лист готовности</span></button>
                 </div>
             </div>
 
@@ -715,7 +749,7 @@
                             <option value="integration" data-i18n="wcs_opt_integ">Интеграция (через 7-14 дней после сессии)</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary" onclick="saveWcsAssessment()" data-i18n="btn_save_wcs">💾 Сохранить результат</button>
+                    <button class="btn btn-primary" onclick="saveWcsAssessment()"><i data-lucide="save"></i> <span data-i18n="btn_save_wcs">Сохранить результат</span></button>
                 </div>
 
                 <!-- Real-time Score Dashboard -->
@@ -750,7 +784,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>Часть А: Чек-лист для участника (Клиента)</h3>
-                            <button class="btn btn-sm btn-outline" onclick="quickSend('checklist_pdf')">Отправить PDF в TG ✈️</button>
+                            <button class="btn btn-sm btn-outline" onclick="quickSend('checklist_pdf')">Отправить PDF в TG <i data-lucide="send"></i></button>
                         </div>
                         <div class="card-body">
                             <h4 class="cl-sub">За 3–5 дней до сессии</h4>
@@ -809,8 +843,8 @@
                     <span class="section-sub" data-i18n="tg_hub_sub">Мгновенная отправка PDF-файлов, опросников, памяток и инструкций прямо клиенту в Telegram</span>
                 </div>
                 <div class="tg-config-header">
-                    <button class="btn btn-secondary btn-sm" onclick="openSettingsModal()" data-i18n="btn_cfg_token">⚙️ Настроить токен бота</button>
-                    <button class="btn btn-outline btn-sm" onclick="checkTelegramConnection()" data-i18n="btn_check_conn">🔄 Проверить связь</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openSettingsModal()"><i data-lucide="settings"></i> <span data-i18n="btn_cfg_token">Настроить токен бота</span></button>
+                    <button class="btn btn-outline btn-sm" onclick="checkTelegramConnection()"><i data-lucide="refresh-cw"></i> <span data-i18n="btn_check_conn">Проверить связь</span></button>
                 </div>
             </div>
 
@@ -828,8 +862,9 @@
                                 <select id="tgClientSelect" class="form-control" onchange="onTgClientSelected()">
                                     <option value="" data-i18n="opt_choose_client">-- Выбрать из базы клиентов --</option>
                                 </select>
-                                <button class="btn btn-outline btn-sm" onclick="loadRecentTgChats()" title="Загрузить недавние диалоги с ботом" data-i18n="btn_recent_chats">
-                                    💬 Недавние чаты
+                                <button class="btn btn-outline btn-sm" onclick="loadRecentTgChats()" title="Загрузить недавние диалоги с ботом">
+                                    <i data-lucide="message-circle"></i>
+                                    <span data-i18n="btn_recent_chats">Недавние чаты</span>
                                 </button>
                             </div>
                         </div>
@@ -862,8 +897,9 @@
                         </div>
 
                         <div class="send-action-row">
-                            <button id="btnSendTelegram" class="btn btn-primary btn-lg" onclick="executeTelegramSend()" data-i18n="btn_send_tg">
-                                🚀 Отправить файл клиенту в Telegram
+                            <button id="btnSendTelegram" class="btn btn-primary btn-lg" onclick="executeTelegramSend()">
+                                <i data-lucide="send"></i>
+                                <span data-i18n="btn_send_tg">Отправить файл клиенту в Telegram</span>
                             </button>
                             <span id="tgSendStatus" class="send-status-indicator"></span>
                         </div>
@@ -919,8 +955,8 @@
                         <div class="card-header">
                             <h3 id="libraryDocTitle" data-i18n="lib_placeholder">Выберите документ из списка слева</h3>
                             <div id="libraryDocActions" style="display: none;">
-                                <button class="btn btn-sm btn-outline" id="btnDownloadDoc" data-i18n="btn_download">💾 Скачать</button>
-                                <button class="btn btn-sm btn-primary" id="btnSendDocTg" data-i18n="btn_send_tg_doc">✈️ Отправить в Telegram</button>
+                                <button class="btn btn-sm btn-outline" id="btnDownloadDoc"><i data-lucide="download"></i> <span data-i18n="btn_download">Скачать</span></button>
+                                <button class="btn btn-sm btn-primary" id="btnSendDocTg"><i data-lucide="send"></i> <span data-i18n="btn_send_tg_doc">Отправить в Telegram</span></button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -943,8 +979,8 @@
     <div id="settingsModal" class="modal-backdrop">
         <div class="modal-card">
             <div class="modal-header">
-                <h3>⚙️ Настройки Telegram и Проводника</h3>
-                <button class="modal-close" onclick="closeSettingsModal()">✕</button>
+                <h3><i data-lucide="settings"></i> Настройки Telegram и Проводника</h3>
+                <button class="modal-close" onclick="closeSettingsModal()"><i data-lucide="x"></i></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -978,8 +1014,8 @@
     <div id="clientModal" class="modal-backdrop">
         <div class="modal-card">
             <div class="modal-header">
-                <h3 id="clientModalTitle">➕ Новый пациент / клиент</h3>
-                <button class="modal-close" onclick="closeClientModal()">✕</button>
+                <h3 id="clientModalTitle"><i data-lucide="user-plus"></i> <span>Новый пациент / клиент</span></h3>
+                <button class="modal-close" onclick="closeClientModal()"><i data-lucide="x"></i></button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="editClientId" value="">
@@ -1048,7 +1084,7 @@
         <div class="modal-card modal-sm">
             <div class="modal-header">
                 <h3>Запись наблюдения / цитаты</h3>
-                <button class="modal-close" onclick="closeCustomEventModal()">✕</button>
+                <button class="modal-close" onclick="closeCustomEventModal()"><i data-lucide="x"></i></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -1068,8 +1104,8 @@
     </div>
 
     <!-- Scripts in proper loading order -->
-    <script src="/static/js/wcs_tool.js"></script>
-    <script src="/static/js/session_timer.js"></script>
-    <script src="/static/js/app.js"></script>
+    <script src="/static/js/wcs_tool.js?v=2"></script>
+    <script src="/static/js/session_timer.js?v=2"></script>
+    <script src="/static/js/app.js?v=3"></script>
 </body>
 </html>

@@ -161,7 +161,8 @@ function pauseSession() {
     isSessionRunning = false;
     const btn = document.getElementById('btnStartSession');
     btn.disabled = false;
-    btn.innerText = window.t('btn_resume_session');
+    const btnLabel = btn.querySelector('[data-i18n]') || btn;
+    btnLabel.innerText = window.t('btn_resume_session');
     document.getElementById('btnPauseSession').disabled = true;
 
     const badge = document.getElementById('sessionStatusBadge');
@@ -191,7 +192,8 @@ async function finishSession() {
 
     const btn = document.getElementById('btnStartSession');
     btn.disabled = false;
-    btn.innerText = window.t('btn_start_session');
+    const btnLabel = btn.querySelector('[data-i18n]') || btn;
+    btnLabel.innerText = window.t('btn_start_session');
     document.getElementById('btnPauseSession').disabled = true;
     document.getElementById('btnEndSession').disabled = true;
 
@@ -199,7 +201,7 @@ async function finishSession() {
     badge.innerText = window.t('pilot_status_completed');
     badge.className = 'badge badge-integ';
 
-    const okMsg = window.currentLang === 'en' ? '✅ Session successfully concluded and saved to database!' : window.currentLang === 'bg' ? '✅ Сесията е завършена успешно и запазена в базата данни!' : '✅ Сессия успешно завершена и сохранена в базу данных!';
+    const okMsg = window.currentLang === 'en' ? 'Session successfully concluded and saved to database!' : window.currentLang === 'bg' ? 'Сесията е завършена успешно и запазена в базата данни!' : 'Сессия успешно завершена и сохранена в базу данных!';
     alert(okMsg);
     activeSessionId = null;
     sessionSeconds = 0;

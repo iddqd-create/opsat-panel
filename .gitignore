@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local SQLite databases (protect client confidentiality)
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+.env.*
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Editor configurations
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Storage runtime uploads
+app/storage/*
+!app/storage/.gitkeep
